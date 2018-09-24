@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour {
 
-	Dictionary<Vector3Int, GameObject> unit_dictionary;
+	List<TileMapElement> units;
 	public MapManager mapManager;
 
 
 	// Use this for initialization
 	void Start () {
-		unit_dictionary = new Dictionary<Vector3Int, GameObject>();
+		units = new List<TileMapElement>();
 	}
 	
 	// Update is called once per frame
@@ -19,16 +19,12 @@ public class UnitManager : MonoBehaviour {
 	}
 
 	public void addUnit(Vector3Int tile_pos, GameObject unit) {
-		unit_dictionary.Add(tile_pos, unit);
+		TileMapElement element = new TileMapElement(unit, new Vector2Int(tile_pos.x, tile_pos.y));
+		units.Add(element);
 		unit.transform.position = mapManager.getWorldPosition(tile_pos);
 	}
 
-	public bool containtsUnit(Vector3Int unit_pos) {
-		return unit_dictionary.ContainsKey(unit_pos);
+	public void followPath(TileMapElement unit, List<Vector3Int> new_tile_pos) {
+		unit.followPath(new_tile_pos);
 	}
-
-	public void displayUnit(Vector3Int unit_pos) {
-		Debug.Log(unit_dictionary[unit_pos]);
-	}
-
 }
