@@ -53,10 +53,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\algorithm\GridPathSolver.cs" />
      <Compile Include="Assets\Scripts\FloorScript.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\MapManager.cs" />
      <Compile Include="Assets\Scripts\UnitManager.cs" />
+     <Compile Include="Assets\Scripts\UnitsScript.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>/home/jleveau/tactical-game-board/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

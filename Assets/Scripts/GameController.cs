@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+using AssemblyCSharp.Assets.Scripts.algorithm;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
@@ -28,6 +30,9 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void onTileSelected(Vector3Int tilepos) {
-		Debug.Log(tilepos);
+		List<Vector3Int> path = mapManager.getPath(new Vector3Int(0, 0, 0), new Vector3Int(5, 2, 0));
+		foreach(Vector3Int pos in path) {
+			Debug.Log(pos);
+		}
 	}
 }

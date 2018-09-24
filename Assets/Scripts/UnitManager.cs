@@ -31,5 +31,4 @@ public class UnitManager : MonoBehaviour {
 		Debug.Log(unit_dictionary[unit_pos]);
 	}
 
-
 }

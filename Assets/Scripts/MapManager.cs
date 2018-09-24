@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using AssemblyCSharp.Assets.Scripts.algorithm;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,13 +10,14 @@ public class MapManager : MonoBehaviour
 	public GameController gameController;
 
 	public Tilemap floor;
-
+	private GridPathSolver pathSolver;
     Color originalColor;
 
     // Use this for initialization
 
     void Start()
     {
+		pathSolver = new GridPathSolver();
 		originalColor = floor.GetComponent<Tilemap>().color;
 		for (int x = floor.cellBounds.xMin; x < floor.cellBounds.xMax; x++) {
 			for (int y = floor.cellBounds.yMin; y < floor.cellBounds.yMax; y++) {
@@ -35,28 +37,36 @@ public class MapManager : MonoBehaviour
 
 	public void selectCell()
     {
-		gameController.onTileSelected(cellPosToTilePos(worldToCell(Input.mousePosition)));
+		gameController.onTileSelected(worldToCell(Input.mousePosition));
     }
 
 	public void changeTileColor(Vector3Int tilePos, Color color)
     {
-		Debug.Log("in");
-		Debug.Log(color);
-		floor.SetColor(tilePosToCellPos(tilePos), color);
+		floor.SetColor(tilePos, color);
     }
-
-	public void resetColor(Vector3Int tilePos) {
-		floor.SetColor(tilePosToCellPos(tilePos), originalColor);
+    
+	public void resetColor(Vector3Int cellPos) {
+		floor.SetColor(cellPos, originalColor);
 	}
     
 	public void onOverFloor(Vector3 pos)
     {
 		Vector3Int cellPos = worldToCell(pos);
-		gameController.onOverTile(cellPosToTilePos(cellPos));
+		gameController.onOverTile(cellPos);
     }
 
-	public Vector3 getWorldPosition(Vector3Int tilePos) {
-		Vector3 pos = floor.CellToWorld(tilePosToCellPos(tilePos));
+	public List<Vector3Int> getPath(Vector3Int start, Vector3Int end) {
+
+		List<Vector2Int> path = pathSolver.FindPath(new Vector2Int(start.x, start.y), new Vector2Int(end.x, end.y));
+		List<Vector3Int> path3D = new List<Vector3Int>();
+		foreach (Vector2Int pos in path) {
+			path3D.Add(new Vector3Int(pos.x, pos.y, 0));
+		}
+		return path3D;
+	}
+
+	public Vector3 getWorldPosition(Vector3Int cellPos) {
+		Vector3 pos = floor.CellToWorld(cellPos);
 		pos.x += floor.cellSize.x / 2;
 		pos.y += floor.cellSize.y / 2;
 		return pos;
@@ -65,22 +75,6 @@ public class MapManager : MonoBehaviour
 	private Vector3Int worldToCell(Vector3 pos) {
 		return floor.WorldToCell(Camera.main.ScreenToWorldPoint(pos));
 	}
-
-	private Vector3Int cellPosToTilePos(Vector3Int cellPos) {
-		Vector3Int bounds = floor.origin;
-		int PosX = cellPos.x - bounds.x;
-		int PosY = cellPos.y - bounds.y;
-
-		return new Vector3Int(PosX, PosY, cellPos.z);
-	}
-
-	private Vector3Int tilePosToCellPos(Vector3Int tilePos)
-    {
-		Vector3Int bounds = floor.origin;
-		int PosX = tilePos.x + bounds.x;
-		int PosY = tilePos.y + bounds.y;
-
-		return new Vector3Int(PosX, PosY, tilePos.z);
-    } 
+    
 
 }
