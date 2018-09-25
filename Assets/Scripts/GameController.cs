@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-		unitManager.addUnit(new Vector3Int(0, 0, 0), unit);
+		unitManager.addUnit(new Vector3Int(0, 0, -1), unit);
 	}
 	
 	// Update is called once per frame
@@ -30,9 +30,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void onTileSelected(Vector3Int tilepos) {
-		List<Vector3Int> path = mapManager.getPath(new Vector3Int(0, 0, 0), new Vector3Int(5, 2, 0));
-		foreach(Vector3Int pos in path) {
-			Debug.Log(pos);
-		}
+		unitManager.moveUnitTo(unitManager.units[0], tilepos);
 	}
 }

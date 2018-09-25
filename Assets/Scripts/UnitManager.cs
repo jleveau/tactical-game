@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour {
 
-	List<TileMapElement> units;
+	public List<TileMapElement> units;
 	public MapManager mapManager;
 
 
@@ -15,16 +15,22 @@ public class UnitManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		moveUnits();
 	}
 
 	public void addUnit(Vector3Int tile_pos, GameObject unit) {
-		TileMapElement element = new TileMapElement(unit, new Vector2Int(tile_pos.x, tile_pos.y));
+		TileMapElement element = new TileMapElement(unit, mapManager, tile_pos);
 		units.Add(element);
-		unit.transform.position = mapManager.getWorldPosition(tile_pos);
 	}
 
-	public void followPath(TileMapElement unit, List<Vector3Int> new_tile_pos) {
-		unit.followPath(new_tile_pos);
+	public void moveUnitTo(TileMapElement unit, Vector3Int tile_pos) {
+		List<Vector3Int> path = mapManager.getPath(unit.tile_pos, tile_pos);
+		unit.setPath(path);
 	}
+ 
+    private void moveUnits() {
+        foreach(TileMapElement unit in units) {
+			unit.move();
+		}
+    }
 }

@@ -69,6 +69,7 @@ public class MapManager : MonoBehaviour
 		Vector3 pos = floor.CellToWorld(cellPos);
 		pos.x += floor.cellSize.x / 2;
 		pos.y += floor.cellSize.y / 2;
+		pos.z = -1;
 		return pos;
 	}
 
