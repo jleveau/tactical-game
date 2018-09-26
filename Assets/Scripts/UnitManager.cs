@@ -23,8 +23,8 @@ public class UnitManager : MonoBehaviour {
 		units.Add(element);
 	}
 
-	public void moveUnitTo(TileMapElement unit, Vector3Int tile_pos) {
-		List<Vector3Int> path = mapManager.getPath(unit.tile_pos, tile_pos);
+	public void moveUnitTo(TileMapElement unit, Vector3Int destination_tile) {
+		LinkedList<Vector3Int> path = mapManager.getPath(unit.tile_position, destination_tile);
 		unit.setPath(path);
 	}
  

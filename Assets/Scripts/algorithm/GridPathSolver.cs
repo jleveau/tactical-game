@@ -25,7 +25,6 @@ namespace AssemblyCSharp.Assets.Scripts.algorithm
 
 		private Node popNode(List<Node> nodes)  {
 			Node min = nodes[0];
-
 			for (int i = 0; i < nodes.Count; ++i) {
 				if (min.heuristic > nodes[i].heuristic)
 					min = nodes[i];
@@ -46,8 +45,9 @@ namespace AssemblyCSharp.Assets.Scripts.algorithm
 		}
 
 		private bool existsWithInferiorCost(Node node, IEnumerable<Node> list) {
-			foreach (Node n in list) {
-				if (n.pos.x == node.pos.x && n.pos.y == node.pos.y && n.cost < node.cost) {
+           
+			foreach (Node existing_node in list) {
+				if (existing_node.pos.x == node.pos.x && existing_node.pos.y == node.pos.y && existing_node.cost <= node.cost) {
 					return true;
 				}
 			}
@@ -68,6 +68,7 @@ namespace AssemblyCSharp.Assets.Scripts.algorithm
 			return path;
 		}
       
+      
 		public List<Vector2Int> FindPath(Vector2Int start, Vector2Int end) {
 
 			Queue<Node> closedList = new Queue<Node>();
@@ -75,26 +76,24 @@ namespace AssemblyCSharp.Assets.Scripts.algorithm
 
 			Node depart = new Node(0, 0, new Vector2Int(start.x, start.y), null);
 			openedList.Add(depart);
-
+			TimeSpan start_time= DateTime.Now.TimeOfDay;
 			while (openedList.Count > 0) {
 				Node node = popNode(openedList);
 				if (node.pos.x == end.x && node.pos.y == end.y) {
-					//rebuild path
+					TimeSpan end_time = DateTime.Now.TimeOfDay;
 					return buildPath(node);
 				}
 				foreach (Node neighbor in getNeighbors(node)) {
-					if (existsWithInferiorCost(neighbor, openedList) || existsWithInferiorCost(neighbor, closedList)) {
-						continue;
-					} else {
-						neighbor.cost = node.cost + 1;
+					neighbor.cost = node.cost + 1;               
+					if (!(existsWithInferiorCost(neighbor, openedList) || existsWithInferiorCost(neighbor, closedList))) {
 						neighbor.heuristic = neighbor.cost + distance(neighbor.pos, end);
 						openedList.Add(neighbor);
 					}
 				}
 				closedList.Enqueue(node);
 			}
-			return new List<Vector2Int>();
 
+			return new List<Vector2Int>();
 		}
 	}
 }

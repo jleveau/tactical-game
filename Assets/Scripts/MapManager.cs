@@ -55,12 +55,12 @@ public class MapManager : MonoBehaviour
 		gameController.onOverTile(cellPos);
     }
 
-	public List<Vector3Int> getPath(Vector3Int start, Vector3Int end) {
+	public LinkedList<Vector3Int> getPath(Vector3Int start, Vector3Int end) {
 
 		List<Vector2Int> path = pathSolver.FindPath(new Vector2Int(start.x, start.y), new Vector2Int(end.x, end.y));
-		List<Vector3Int> path3D = new List<Vector3Int>();
+		LinkedList<Vector3Int> path3D = new LinkedList<Vector3Int>();
 		foreach (Vector2Int pos in path) {
-			path3D.Add(new Vector3Int(pos.x, pos.y, 0));
+			path3D.AddFirst(new Vector3Int(pos.x, pos.y, 0));
 		}
 		return path3D;
 	}
