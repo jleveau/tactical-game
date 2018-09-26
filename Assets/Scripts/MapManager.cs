@@ -29,15 +29,12 @@ public class MapManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-			selectCell();
-        }
+
     }
 
-	public void selectCell()
+	public void selectCell(Vector3 pos)
     {
-		gameController.onTileSelected(worldToCell(Input.mousePosition));
+		gameController.onTileSelected(getTilePosition(pos));
     }
 
 	public void changeTileColor(Vector3Int tilePos, Color color)
@@ -51,12 +48,11 @@ public class MapManager : MonoBehaviour
     
 	public void onOverFloor(Vector3 pos)
     {
-		Vector3Int cellPos = worldToCell(pos);
+		Vector3Int cellPos = getTilePosition(pos);
 		gameController.onOverTile(cellPos);
     }
 
 	public LinkedList<Vector3Int> getPath(Vector3Int start, Vector3Int end) {
-
 		List<Vector2Int> path = pathSolver.FindPath(new Vector2Int(start.x, start.y), new Vector2Int(end.x, end.y));
 		LinkedList<Vector3Int> path3D = new LinkedList<Vector3Int>();
 		foreach (Vector2Int pos in path) {
@@ -73,8 +69,8 @@ public class MapManager : MonoBehaviour
 		return pos;
 	}
 
-	private Vector3Int worldToCell(Vector3 pos) {
-		return floor.WorldToCell(Camera.main.ScreenToWorldPoint(pos));
+	public Vector3Int getTilePosition(Vector3 pos) {
+		return floor.WorldToCell(pos);
 	}
     
 

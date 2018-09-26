@@ -60,6 +60,7 @@ namespace AssemblyCSharp.Assets.Scripts.algorithm
 
 		private List<Vector2Int> buildPath(Node node) {
 			List<Vector2Int> path = new List<Vector2Int>();
+			path.Add(node.pos);
 			while (node.parent != null) 
 			{
 				path.Add(node.parent.pos);

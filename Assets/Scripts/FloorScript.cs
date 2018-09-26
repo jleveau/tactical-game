@@ -14,12 +14,15 @@ public class FloorScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetMouseButtonDown(0))
+        {
+			mapManager.selectCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
     }
 
 	private void OnMouseOver()
     {
-		mapManager.onOverFloor(Input.mousePosition);
+		mapManager.onOverFloor(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
 }

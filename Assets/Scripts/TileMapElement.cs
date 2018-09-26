@@ -11,7 +11,7 @@ public class TileMapElement  {
 	public LinkedList<Vector3> path;
 	public MapManager mapManager;
 
-	public float TRANSLATE_SPEED = 0.1F;
+	public float TRANSLATE_SPEED = 0.5F;
 	public float EPSILON_DISTANCE = 0.00000000001F;
 
     public TileMapElement(GameObject gameobject, MapManager mapManager, Vector3Int position) {
@@ -25,7 +25,6 @@ public class TileMapElement  {
 	public void setPath(LinkedList<Vector3Int> tile_path) {
 		LinkedList<Vector3> path_world_pos = new LinkedList<Vector3>();
 		foreach (Vector3Int tile_pos in tile_path) {
-			Debug.Log(tile_pos);
 			path_world_pos.AddLast(mapManager.getWorldPosition(tile_pos));
 		}
 		path = path_world_pos;
@@ -37,6 +36,7 @@ public class TileMapElement  {
         }
         if (this.path.Count > 0) {
             Vector3 dest = this.path.First.Value;
+
             float dx = Math.Min(this.TRANSLATE_SPEED, Math.Abs(this.gameobject.transform.position.x - dest.x));
             float dy = Math.Min(this.TRANSLATE_SPEED, Math.Abs(this.gameobject.transform.position.y - dest.y));
             if (dest.x < this.gameobject.transform.position.x) {
@@ -45,13 +45,13 @@ public class TileMapElement  {
             if (dest.y < this.gameobject.transform.position.y) {
                 dy *= -1;
             }
-
             this.gameobject.transform.Translate(new Vector3(dx, dy, 0));
 
 			if (Math.Abs(this.gameobject.transform.position.x - dest.x) < EPSILON_DISTANCE && Math.Abs(this.gameobject.transform.position.y - dest.y) < EPSILON_DISTANCE) {
-				this.path.RemoveFirst();
+                this.tile_position = this.mapManager.floor.WorldToCell(dest);
+
+                this.path.RemoveFirst();
             }
         }
     }
-
 }
