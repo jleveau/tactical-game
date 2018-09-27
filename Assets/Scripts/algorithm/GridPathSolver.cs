@@ -21,7 +21,6 @@ namespace AssemblyCSharp.Assets.Scripts.algorithm
 				this.parent = parent;
 			}
 		}
-        
 
 		private Node popNode(List<Node> nodes)  {
 			Node min = nodes[0];
