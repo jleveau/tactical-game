@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FloorScript : MonoBehaviour {
 
-	public BoardController controller;
+	public Board controller;
 
 	// Use this for initialization
     void Start()

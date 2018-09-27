@@ -4,7 +4,7 @@ using AssemblyCSharp.Assets.Scripts.TileMapElements;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class BoardController : MonoBehaviour
+public class Board : MonoBehaviour
 {
 
 	private MapManager mapManager;
@@ -33,6 +33,10 @@ public class BoardController : MonoBehaviour
 	void Update () {
 		
 	}
+
+	public int getTileDistance(Vector3Int pos1, Vector3Int pos2) {
+		return this.mapManager.getTileDistance(pos1, pos2);
+	}
     
 	public void onOverFloor(Vector3 pos) {
 		Vector3Int tile_pos = mapManager.getTilePosition(pos);
@@ -46,7 +50,7 @@ public class BoardController : MonoBehaviour
 		moveUnitTo(currentUnit, tile_pos);
 	}
    
-	private void addUnitOnBoard(GameObject game_object, Vector3Int tilepos) {
+	public void addUnitOnBoard(GameObject game_object, Vector3Int tilepos) {
 		game_object.transform.position = mapManager.getWorldPosition(tilepos);
 		Unit unit = game_object.GetComponent<Unit>();
 		unit.tile_position = tilepos;
@@ -54,10 +58,14 @@ public class BoardController : MonoBehaviour
 		unitManager.addUnit(game_object);
 	}
     
-	private void moveUnitTo(GameObject game_object, Vector3Int dest_tilepos) {
+	public void moveUnitTo(GameObject game_object, Vector3Int dest_tilepos) {
 		Unit unitComponent = game_object.GetComponent<Unit>();
 		unitComponent.setPath(mapManager.getPath(unitComponent.GetComponent<Unit>().tile_position, dest_tilepos));
 		currentUnit = unitManager.getNextUnit();
+	}
+    
+	public List<Vector3Int> getTiles() {
+		return mapManager.getFloorTiles();
 	}
 
 	private GameObject nextUnit()

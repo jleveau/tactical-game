@@ -8,10 +8,11 @@ namespace AssemblyCSharp.Assets.Scripts.TileMapElements
 	public class Unit : MonoBehaviour
     {
 		public Profile profile;
+		[NonSerialized]
 		public Vector3Int tile_position;
 
 		public float TRANSLATE_SPEED = 0.5F;
-        public float EPSILON_DISTANCE = 0.00000000001F;
+        private float EPSILON_DISTANCE = 0.00000000001F;
 		private LinkedList<Vector3> current_path;
 		private BoardController boardController;
 

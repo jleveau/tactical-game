@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using AssemblyCSharp.Assets.Scripts.algorithm;
 using UnityEngine;
@@ -56,6 +56,26 @@ public class MapManager
 	public Vector3Int getTilePosition(Vector3 pos) {
 		return floor.WorldToCell(pos);
 	}
+
+	public int getTileDistance(Vector3Int pos1, Vector3Int pos2) {
+		return Math.Abs(pos1.x - pos2.x) + Math.Abs(pos1.y - pos2.y);
+	}
     
+	public List<Vector3Int> getFloorTiles() {
+		BoundsInt bounds = floor.cellBounds;
+		TileBase[] allTiles = floor.GetTilesBlock(bounds);
+
+		List<Vector3Int> tiles_pos = new List<Vector3Int>();
+
+        for (int x = 0; x < bounds.size.x; x++) {
+            for (int y = 0; y < bounds.size.y; y++) {
+                TileBase tile = allTiles[x + y * bounds.size.x];
+                if (tile != null) {
+					tiles_pos.Add(new Vector3Int(x, y, -1));
+                }
+            }
+        }
+		return tiles_pos;
+	}
 
 }

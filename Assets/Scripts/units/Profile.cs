@@ -7,5 +7,6 @@ namespace AssemblyCSharp.Assets.Scripts.TileMapElements.Units
 	public class Profile
     {
 		public int initiative;
+		public int movement_points;
     }
 }

@@ -123,8 +123,10 @@ GameObject:
   m_Component:
   - component: {fileID: 145015012}
   - component: {fileID: 145015011}
+  - component: {fileID: 145015013}
+  - component: {fileID: 145015014}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,14 +151,43 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 145015010}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1982630688}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &145015013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 145015010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1eef5cde45843baaf54b2ecb3d2376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overColor: {r: 0.8301887, g: 0.078319676, b: 0.078319676, a: 0}
+  floor: {fileID: 1982630690}
+  units:
+  - {fileID: 1405500893}
+  - {fileID: 224557132}
+--- !u!114 &145015014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 145015010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49a10c47f6a6408684d6a64553d6f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phases: []
+  board: {fileID: 145015013}
 --- !u!1 &224557132
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +262,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &224557135
 MonoBehaviour:
@@ -246,8 +277,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile:
     initiative: 0
+    movement_points: 0
   TRANSLATE_SPEED: 0.5
-  EPSILON_DISTANCE: 1e-11
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +430,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1405500896
 MonoBehaviour:
@@ -414,53 +445,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile:
     initiative: 0
+    movement_points: 0
   TRANSLATE_SPEED: 0.5
-  EPSILON_DISTANCE: 1e-11
---- !u!1 &1850107144
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1850107146}
-  - component: {fileID: 1850107145}
-  m_Layer: 0
-  m_Name: BoardController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1850107145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1850107144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e1eef5cde45843baaf54b2ecb3d2376, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  overColor: {r: 0.8301887, g: 0.078319676, b: 0.078319676, a: 0}
-  floor: {fileID: 1982630690}
-  units:
-  - {fileID: 1405500893}
-  - {fileID: 224557132}
---- !u!4 &1850107146
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1850107144}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11931038, y: 2.7838013, z: 0.3828125}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1982630687
 GameObject:
   m_ObjectHideFlags: 0
@@ -5966,7 +5952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fb1886598ba4ba98c684310d844537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1850107145}
+  controller: {fileID: 145015013}
 --- !u!19719996 &1982630692
 TilemapCollider2D:
   m_ObjectHideFlags: 0
