@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 145015012}
   - component: {fileID: 145015011}
   - component: {fileID: 145015013}
-  - component: {fileID: 145015014}
   m_Layer: 0
   m_Name: board
   m_TagString: Untagged
@@ -167,27 +166,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 145015010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e1eef5cde45843baaf54b2ecb3d2376, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a6e091489558407a93883394608e8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overColor: {r: 0.8301887, g: 0.078319676, b: 0.078319676, a: 0}
+  gameController: {fileID: 961864536}
   floor: {fileID: 1982630690}
-  units:
-  - {fileID: 1405500893}
-  - {fileID: 224557132}
---- !u!114 &145015014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 145015010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49a10c47f6a6408684d6a64553d6f9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phases: []
-  board: {fileID: 145015013}
 --- !u!1 &224557132
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile:
     initiative: 0
-    movement_points: 0
+    movement_points: 10
   TRANSLATE_SPEED: 0.5
 --- !u!1 &519420028
 GameObject:
@@ -355,6 +338,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &961864535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 961864537}
+  - component: {fileID: 961864536}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &961864536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 961864535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa4f37e828598741a0c754d6c12bf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  board: {fileID: 145015013}
+  units:
+  - {fileID: 224557132}
+  - {fileID: 1405500893}
+  target_action_color: {r: 1, g: 0, b: 0, a: 0}
+--- !u!4 &961864537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 961864535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.11931038, y: 2.7838013, z: 0.3828125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1405500893
 GameObject:
@@ -445,7 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile:
     initiative: 0
-    movement_points: 0
+    movement_points: 10
   TRANSLATE_SPEED: 0.5
 --- !u!1 &1982630687
 GameObject:
@@ -5952,7 +5980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fb1886598ba4ba98c684310d844537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 145015013}
+  board: {fileID: 145015013}
 --- !u!19719996 &1982630692
 TilemapCollider2D:
   m_ObjectHideFlags: 0

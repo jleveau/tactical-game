@@ -1,20 +1,24 @@
 ﻿
+using System;
+using UnityEngine;
 
 public class MoveAction : Action {
 	
-   public MoveAction(AssemblyCSharp.Assets.Scripts.TileMapElements.Unit performer, UnityEngine.Vector3Int target, Board board) : base(performer, target, board)
+   public MoveAction(Unit performer, Board board) : base(performer, board)
 	{
 	}
 
-	public override bool condition()
+	public override bool condition(Unit performer, Vector3Int target, Board board)
 	{
-		return this.board.getTileDistance(this.performer.tile_position, this.target) < this.performer.profile.movement_points;
+		return this.board.getTileDistance(performer.tile_position, target) < performer.profile.movement_points;
 	}
 
-	public override void perform()
+	public override void perform(Vector3Int target)
 	{
-		this.board.moveUnitTo(this.performer.gameObject, this.target);
+		this.board.moveUnitTo(this.performer.gameObject, target);
 	}
+
+
+
     
-
 }

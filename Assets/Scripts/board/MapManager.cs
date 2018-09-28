@@ -7,18 +7,17 @@ using UnityEngine.Tilemaps;
 public class MapManager
 {
 
-	private Tilemap floor;
+	public Tilemap floor;
 	private GridPathSolver pathSolver;
     private Color originalColor;
 
     // Use this for initialization
 	public MapManager(Tilemap floor)
 	{
-		this.floor = floor;
 		pathSolver = new GridPathSolver();
-        originalColor = floor.GetComponent<Tilemap>().color;
-        for (int x = floor.cellBounds.xMin; x < floor.cellBounds.xMax; x++)
-        {
+		this.floor = floor;
+		originalColor = floor.GetComponent<Tilemap>().color;
+		for (int x = floor.cellBounds.xMin; x < floor.cellBounds.xMax; x++) {
             for (int y = floor.cellBounds.yMin; y < floor.cellBounds.yMax; y++)
             {
                 floor.RemoveTileFlags(new Vector3Int(x, y, floor.cellBounds.z), TileFlags.LockColor);

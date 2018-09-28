@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FloorScript : MonoBehaviour {
 
-	public Board controller;
+	public Board board;
 
 	// Use this for initialization
     void Start()
@@ -16,13 +16,13 @@ public class FloorScript : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
-			controller.onFloorClicked(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+			board.onFloorClicked(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
     }
 
 	private void OnMouseOver()
     {
-		controller.onOverFloor(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+		board.onOverFloor(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
 }
