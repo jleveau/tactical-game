@@ -1,16 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
+using System.Collections;
 
 public class GameController : MonoBehaviour {
 
 	public Board board;
 	public List<GameObject> units;
-	public Color target_action_color;
+
+	public Color moveable_tiles_color;
+	public Color over_color;
+
 	ActionManager actionManager;
 	UnitManager unitManager;
 	GameObject currentUnit;
+
+	Vector3Int mouse_over_tile;
 
 	// Use this for initialization
 	void Start () {
@@ -22,28 +26,46 @@ public class GameController : MonoBehaviour {
 			unitManager.addUnit(unit);
 	        ++i;
 		}
+
 		currentUnit = unitManager.getNextUnit();
+		StartCoroutine("DisplayTiles");
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
-	public void onTileClicked(Vector3Int tilepos) {
-		if (currentUnit != null) {
-			Unit unit = currentUnit.GetComponent<Unit>();
-			List<Type> action_types = actionManager.getAvailableActions(unit, board);
-			Type action_type = action_types[0];
+	IEnumerator DisplayTiles() {
+		for (; ;)
+        {
+			displayMovableTiles();
+			board.changeTileColor(mouse_over_tile, over_color);      
 
-			List<Vector3Int> targetable_positions = actionManager.getAvailableTargetsForAction(unit, board, action_type);
-			foreach(Vector3Int targetable_position in targetable_positions) {
-				board.changeTileColor(targetable_position, target_action_color);
-			}
+			yield return null;
 		}
 	}
 
-	public void onOverBoard(Vector3Int tilepos) {
+	public void displayMovableTiles() {
+		
+        if (currentUnit != null)
+        {
+            Unit unit = currentUnit.GetComponent<Unit>();
+            List<Vector3Int> moveable_tiles = actionManager.getAvailableMoveActionTarget(unit, board);
+            foreach (Vector3Int targetable_position in moveable_tiles)
+            {
+                board.changeTileColor(targetable_position, moveable_tiles_color);
+            }
+        }
+	}   
 
+	public void onTileClicked(Vector3Int tilepos) {
+
+	}
+
+	public void onOverBoard(Vector3Int tilepos) {
+		board.resetTileColor(mouse_over_tile);
+		mouse_over_tile = tilepos;
 	}
 }

@@ -36,6 +36,7 @@ public class Board : MonoBehaviour
 		mapManager.changeTileColor(tile_to_color, color);
 	}
 
+
 	public void onFloorClicked(Vector3 pos) {
 		Vector3Int tile_pos = mapManager.getTilePosition(pos);
 		gameController.onTileClicked(tile_pos);

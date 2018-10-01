@@ -11,6 +11,9 @@ public class MapManager
 	private GridPathSolver pathSolver;
     private Color originalColor;
 
+	private int Z_WOLRD_POS = -1;
+	private int FLOOR_TILE_POS = 0;
+
     // Use this for initialization
 	public MapManager(Tilemap floor)
 	{
@@ -26,20 +29,19 @@ public class MapManager
 	}
 
 	public void changeTileColor(Vector3Int tilePos, Color color)
-    {
-		floor.SetColor(tilePos, color);
+    {      
+		floor.SetColor(new Vector3Int(tilePos.x, tilePos.y, FLOOR_TILE_POS), color);
     }
-    
-	public void resetColor(Vector3Int cellPos) {
-		floor.SetColor(cellPos, originalColor);
+
+	public void resetColor(Vector3Int tilePos) {
+		floor.SetColor(tilePos, originalColor);
 	}
-    
    
 	public LinkedList<Vector3Int> getPath(Vector3Int start, Vector3Int end) {
 		List<Vector2Int> path = pathSolver.FindPath(new Vector2Int(start.x, start.y), new Vector2Int(end.x, end.y));
 		LinkedList<Vector3Int> path3D = new LinkedList<Vector3Int>();
 		foreach (Vector2Int pos in path) {
-			path3D.AddFirst(new Vector3Int(pos.x, pos.y, 0));
+			path3D.AddFirst(new Vector3Int(pos.x, pos.y, FLOOR_TILE_POS));
 		}
 		return path3D;
 	}
@@ -48,7 +50,7 @@ public class MapManager
 		Vector3 pos = floor.CellToWorld(cellPos);
 		pos.x += floor.cellSize.x / 2;
 		pos.y += floor.cellSize.y / 2;
-		pos.z = -1;
+		pos.z = Z_WOLRD_POS;
 		return pos;
 	}
 
@@ -62,15 +64,14 @@ public class MapManager
     
 	public List<Vector3Int> getFloorTiles() {
 		BoundsInt bounds = floor.cellBounds;
-		TileBase[] allTiles = floor.GetTilesBlock(bounds);
 
 		List<Vector3Int> tiles_pos = new List<Vector3Int>();
 
-        for (int x = 0; x < bounds.size.x; x++) {
-            for (int y = 0; y < bounds.size.y; y++) {
-                TileBase tile = allTiles[x + y * bounds.size.x];
-                if (tile != null) {
-					tiles_pos.Add(new Vector3Int(x, y, -1));
+		for (int x = bounds.xMin; x < bounds.size.x; x++) {
+			for (int y = bounds.yMin; y < bounds.size.y; y++) {
+				Vector3Int tile_pos = new Vector3Int(x, y , FLOOR_TILE_POS);
+				if (floor.GetTile(tile_pos) != null) {
+					tiles_pos.Add(new Vector3Int(x, y, FLOOR_TILE_POS));
                 }
             }
         }

@@ -370,7 +370,8 @@ MonoBehaviour:
   units:
   - {fileID: 224557132}
   - {fileID: 1405500893}
-  target_action_color: {r: 1, g: 0, b: 0, a: 0}
+  moveable_tiles_color: {r: 0.043137264, g: 0.9254902, b: 0.3730111, a: 0.3137255}
+  over_color: {r: 1, g: 0, b: 0.4145689, a: 0}
 --- !u!4 &961864537
 Transform:
   m_ObjectHideFlags: 0
