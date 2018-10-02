@@ -36,6 +36,14 @@ public class Board : MonoBehaviour
 		mapManager.changeTileColor(tile_to_color, color);
 	}
 
+	public void resetBoardColor()
+    {
+        foreach (Vector3Int tile in getTiles())
+        {
+            resetTileColor(tile);
+        }
+    }
+
 
 	public void onFloorClicked(Vector3 pos) {
 		Vector3Int tile_pos = mapManager.getTilePosition(pos);
@@ -69,5 +77,9 @@ public class Board : MonoBehaviour
             return mapManager;
         }
     }
+
+	public Vector3 tileToWorldPosition(Vector3Int tilepos) {
+		return mapManager.getWorldPosition(tilepos);
+	}
 
 }

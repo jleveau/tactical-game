@@ -12,6 +12,11 @@ public class MoveAction : Action {
 	public override void perform(Unit performer, Vector3Int target, Board board)
 	{
 		board.moveUnitTo(performer.gameObject, target);
-	}   
-    
+	}
+
+	public override string getActionText()
+	{
+		return "move";
+	}
+
 }

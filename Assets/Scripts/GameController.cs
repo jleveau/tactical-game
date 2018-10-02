@@ -5,7 +5,10 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 
 	public Board board;
+	public MenuController menu_controller;
 	public List<GameObject> units;
+
+
 
 	public Color moveable_tiles_color;
 	public Color over_color;
@@ -40,12 +43,15 @@ public class GameController : MonoBehaviour {
 	IEnumerator DisplayTiles() {
 		for (; ;)
         {
+			board.resetBoardColor();
 			displayMovableTiles();
 			board.changeTileColor(mouse_over_tile, over_color);      
 
 			yield return null;
 		}
 	}
+
+
 
 	public void displayMovableTiles() {
 		
@@ -61,11 +67,16 @@ public class GameController : MonoBehaviour {
 	}   
 
 	public void onTileClicked(Vector3Int tilepos) {
-
+		Unit unit = currentUnit.GetComponent<Unit>();
+		List<Action> actions = actionManager.getAvailableActionsForTarget(unit, tilepos, board);
+		menu_controller.displayActionMenu(board.tileToWorldPosition(tilepos), actions);
+		                                  
 	}
 
 	public void onOverBoard(Vector3Int tilepos) {
 		board.resetTileColor(mouse_over_tile);
 		mouse_over_tile = tilepos;
 	}
+
+
 }

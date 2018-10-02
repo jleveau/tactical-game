@@ -22,4 +22,5 @@ public abstract class Action  {
 
 	public abstract void perform(Unit performer, Vector3Int target, Board board);
 
+	public abstract string getActionText();
 }
