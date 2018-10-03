@@ -7,22 +7,26 @@ public class MenuController : MonoBehaviour {
 
 	public GameObject actionMenu;
     public GameObject GUICanvas;
-
+	public GameController gameController;
+    
 	// Use this for initialization
 	void Start () {
-		actionMenu.SetActive(false);
+		actionMenu.gameObject.SetActive(false);
 	}
 
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
-	public void displayActionMenu(Vector3 pos, List<Action> actions)
+	public void displayActionMenu(List<Action> actions)
     {
 		actionMenu.SetActive(true);
-		actionMenu.transform.position = pos;
-		actionMenu.GetComponent<actionMenuScript>().setActions(actions);
+		ActionMenuController menu = actionMenu.GetComponent<ActionMenuController>();
+		menu.setActions(actions);
     }
+
+	public void selectionAction(Action action) {
+		gameController.selectAction(action);
+	}
 
 }

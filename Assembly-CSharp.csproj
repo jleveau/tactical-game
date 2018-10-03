@@ -61,9 +61,8 @@
      <Compile Include="Assets\Scripts\board\FloorScript.cs" />
      <Compile Include="Assets\Scripts\board\MapManager.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
-     <Compile Include="Assets\Scripts\menu\actionMenu\actionMenuItems.cs" />
-     <Compile Include="Assets\Scripts\menu\actionMenu\actionMenuItemScript.cs" />
-     <Compile Include="Assets\Scripts\menu\actionMenu\actionMenuScript.cs" />
+     <Compile Include="Assets\Scripts\menu\actions\ActionMenuController.cs" />
+     <Compile Include="Assets\Scripts\menu\actions\actionMenuItem.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\units\Profile.cs" />
      <Compile Include="Assets\Scripts\units\Unit.cs" />

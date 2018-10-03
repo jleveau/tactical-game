@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour {
 	UnitManager unitManager;
 	GameObject currentUnit;
 
+	Vector3Int selectedTile;
 	Vector3Int mouse_over_tile;
 
 	// Use this for initialization
@@ -69,13 +70,19 @@ public class GameController : MonoBehaviour {
 	public void onTileClicked(Vector3Int tilepos) {
 		Unit unit = currentUnit.GetComponent<Unit>();
 		List<Action> actions = actionManager.getAvailableActionsForTarget(unit, tilepos, board);
-		menu_controller.displayActionMenu(board.tileToWorldPosition(tilepos), actions);
+		menu_controller.displayActionMenu(actions);
+		selectedTile = tilepos;
 		                                  
 	}
 
 	public void onOverBoard(Vector3Int tilepos) {
 		board.resetTileColor(mouse_over_tile);
 		mouse_over_tile = tilepos;
+	}
+
+	public void selectAction(Action action) {
+		Unit unit = currentUnit.GetComponent<Unit>();
+		action.perform(unit, selectedTile, board);
 	}
 
 
