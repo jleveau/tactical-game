@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\actions\Action.cs" />
      <Compile Include="Assets\Scripts\actions\ActionManager.cs" />
      <Compile Include="Assets\Scripts\actions\MoveAction.cs" />
+     <Compile Include="Assets\Scripts\actions\PassAction.cs" />
      <Compile Include="Assets\Scripts\algorithm\GridPathSolver.cs" />
      <Compile Include="Assets\Scripts\board\Board.cs" />
      <Compile Include="Assets\Scripts\board\FloorScript.cs" />

@@ -25,8 +25,13 @@ public class MenuController : MonoBehaviour {
 		menu.setActions(actions);
     }
 
+	public void closeActionMenu() {
+		actionMenu.SetActive(false);
+	}
+
 	public void selectionAction(Action action) {
 		gameController.selectAction(action);
+		closeActionMenu();
 	}
 
 }

@@ -1,10 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameController.cs">
     <Files>
-      <File FileName="Assets/Scripts/MenuController.cs" Line="21" Column="31" />
-      <File FileName="Assets/Scripts/menu/actions/actionMenuItem.cs" Line="30" Column="3" />
-      <File FileName="Assets/Scripts/menu/actions/ActionMenuController.cs" Line="32" Column="6" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="72" Column="29" />
+      <File FileName="Assets/Scripts/MenuController.cs" Line="33" Column="39" />
+      <File FileName="Assets/Scripts/menu/actions/actionMenuItem.cs" Line="22" Column="40" />
+      <File FileName="Assets/Scripts/menu/actions/ActionMenuController.cs" Line="49" Column="3" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="63" Column="6" />
+      <File FileName="Assets/Scripts/actions/Action.cs" Line="17" Column="20" />
+      <File FileName="Assets/Scripts/actions/ActionManager.cs" Line="25" Column="28" />
+      <File FileName="Assets/Scripts/actions/MoveAction.cs" Line="28" Column="1" />
+      <File FileName="Assets/Scripts/units/Unit.cs" Line="37" Column="29" />
+      <File FileName="Assets/Scripts/units/Profile.cs" Line="22" Column="4" />
+      <File FileName="Assets/Scripts/units/UnitManager.cs" Line="49" Column="6" />
+      <File FileName="Assets/Scripts/actions/EmptyClass.cs" Line="10" Column="1" />
+      <File FileName="Assets/Scripts/actions/PassAction.cs" Line="5" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

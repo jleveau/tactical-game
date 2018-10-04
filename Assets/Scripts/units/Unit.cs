@@ -34,6 +34,10 @@ public class Unit : MonoBehaviour
 		}
 	}
 
+	public void new_turn_update() {
+		this.profile.updateStatistics();
+	}
+
 	public void move() {
 		if (this.current_path.First == null || this.current_path.Count == 0)
 		{

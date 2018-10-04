@@ -15,7 +15,6 @@ public class actionMenuItem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown(trigger)) {
-			Debug.Log("in");
 			this.controller.selectionAction(action);
 		}
 	}
