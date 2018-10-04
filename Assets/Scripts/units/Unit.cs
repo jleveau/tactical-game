@@ -11,13 +11,16 @@ public class Unit : MonoBehaviour
 	public Vector3Int tile_position;
 
 	public float TRANSLATE_SPEED = 0.5F;
-	private float EPSILON_DISTANCE = 0.00000000001F;
-	private LinkedList<Vector3> current_path;
-	private Board boardController;
+	float EPSILON_DISTANCE = 0.00000000001F;
+	LinkedList<Vector3> current_path;
+	Board boardController;
+	List<UnitObserver> observers;
+
 
 	void Start()
 	{
 		current_path = new LinkedList<Vector3>();
+		observers = new List<UnitObserver>();
 	}
 	
 	// Update is called once per frame
@@ -26,19 +29,22 @@ public class Unit : MonoBehaviour
 		move();
 	}
 	
-	public void setPath(LinkedList<Vector3Int> tile_path) {
+	public void followPath(LinkedList<Vector3Int> tile_path) {
+
 		current_path = new LinkedList<Vector3>();
 		foreach (Vector3Int tile_pos in tile_path)
 		{
 			current_path.AddLast(boardController.MapManager.getWorldPosition(tile_pos));
 		}
+		notifyActionStarted();
 	}
 
 	public void new_turn_update() {
-		this.profile.updateStatistics();
+		this.profile.UpdateTurnChange();
 	}
 
 	public void move() {
+
 		if (this.current_path.First == null || this.current_path.Count == 0)
 		{
 			return;
@@ -62,6 +68,9 @@ public class Unit : MonoBehaviour
 		{
 			this.tile_position = boardController.MapManager.getTilePosition(dest);
 			this.current_path.RemoveFirst();
+			if (current_path.Count == 0) {
+				notifyActionFinished();
+			}
 		}
 		
 	}
@@ -70,5 +79,29 @@ public class Unit : MonoBehaviour
 		this.boardController = boardController;
 	}
 
+
+
+	public void notifyActionStarted()
+    {
+        foreach (UnitObserver observer in observers)
+        {
+            observer.notifyActionStarted(this);
+        }
+    }
+
+    public void notifyActionFinished()
+    {
+        foreach (UnitObserver observer in observers)
+        {
+            observer.notifyActionFinished(this);
+        }
+    }
+
+    public void addObserver(UnitObserver observer)
+    {
+        observers.Add(observer);
+    }
+    
+    
     
 }

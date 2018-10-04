@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class GameController : MonoBehaviour {
 
@@ -12,11 +13,11 @@ public class GameController : MonoBehaviour {
 	public Color over_color;
 	public Color selected_tile_color;
 
+	bool spectateMode;
+
 	ActionManager actionManager;
 	UnitManager unitManager;
-
-	Vector3Int selectedTile;
-	Vector3Int mouse_over_tile;
+	GameControllerActionObserver actionObserver;
 
 	// Use this for initialization
 	void Start () {
@@ -42,10 +43,15 @@ public class GameController : MonoBehaviour {
 		for (; ;)
         {
 			board.resetBoardColor();
-			displayMovableTiles();
-			board.changeTileColor(mouse_over_tile, over_color);      
-			board.changeTileColor(selectedTile, selected_tile_color);      
-
+			if (!spectateMode) {
+				displayMovableTiles();
+				board.changeTileColor(board.mouse_over_tile, over_color);
+				Nullable<Vector3Int> selectedTile = board.getSelectedTile();
+                if (selectedTile != null)
+                {
+                    board.changeTileColor(selectedTile.GetValueOrDefault(), selected_tile_color);
+                }
+			}         
 			yield return null;
 		}
 	}
@@ -61,27 +67,45 @@ public class GameController : MonoBehaviour {
             }
         }
 	}   
-
+    
 	public void onTileClicked(Vector3Int tilepos) {
-		Unit unit = unitManager.currentUnit;
-		List<Action> actions = actionManager.getAvailableActionsForTarget(unit, tilepos);
-		menu_controller.displayActionMenu(actions);
-		selectedTile = tilepos;                                  
+		if (!spectateMode) {
+			Unit unit = unitManager.currentUnit;
+            List<Action> actions = actionManager.getAvailableActionsForTarget(unit, tilepos);
+            menu_controller.displayActionMenu(actions);
+            board.selectTile(tilepos);                
+		}              
 	}
 
 	public void onOverBoard(Vector3Int tilepos) {
-		board.resetTileColor(mouse_over_tile);
-		mouse_over_tile = tilepos;
+		if (!spectateMode)
+		{
+			board.resetTileColor(board.mouse_over_tile);
+			board.mouse_over_tile = tilepos;
+		}
 	}
 
 	public void selectAction(Action action) {
 		Unit unit = unitManager.currentUnit;
-		action.perform(unit, selectedTile, this);
+		if (board.getSelectedTile()!= null) {
+			action.perform(unit,board.getSelectedTile().Value, this);
+			menu_controller.closeActionMenu();
+			board.unselectTile();
+		}      
 	}
 
 	public void changeCurrentPlayer() {
 		unitManager.nextUnit();
 		menu_controller.closeActionMenu();
+		board.unselectTile();
+	}
+
+	public void startSpectateMode() {
+		spectateMode = true;
+	}
+
+	public void endSpectateMode() {
+		spectateMode = false;
 	}
 
 }

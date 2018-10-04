@@ -1,15 +1,21 @@
 ﻿
 using System.Collections.Generic;
-using AssemblyCSharp.Assets.Scripts.TileMapElements;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System;
 
 public class Board : MonoBehaviour
 {
 
-	private MapManager mapManager;
+	MapManager mapManager;
 	public GameController gameController;
 	public Tilemap floor;
+
+	[NonSerialized]
+	private Nullable<Vector3Int> selectedTile;
+
+	[NonSerialized]
+    public Vector3Int mouse_over_tile;
 
 	Vector3Int selectedTilePos;
 
@@ -63,7 +69,7 @@ public class Board : MonoBehaviour
     
 	public void moveUnitTo(GameObject game_object, Vector3Int dest_tilepos) {
 		Unit unitComponent = game_object.GetComponent<Unit>();
-		unitComponent.setPath(mapManager.getPath(unitComponent.GetComponent<Unit>().tile_position, dest_tilepos));
+		unitComponent.followPath(mapManager.getPath(unitComponent.GetComponent<Unit>().tile_position, dest_tilepos));
 	}
     
 	public List<Vector3Int> getTiles() {
@@ -77,6 +83,18 @@ public class Board : MonoBehaviour
             return mapManager;
         }
     }
+
+	public void selectTile(Vector3Int tile) {
+		selectedTile = tile;
+	}
+
+	public void unselectTile() {
+		selectedTile = null;
+	}
+
+	public Nullable<Vector3Int> getSelectedTile() {
+		return selectedTile;
+	}
 
 	public Vector3 tileToWorldPosition(Vector3Int tilepos) {
 		return mapManager.getWorldPosition(tilepos);

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuController : MonoBehaviour {
@@ -31,7 +30,6 @@ public class MenuController : MonoBehaviour {
 
 	public void selectionAction(Action action) {
 		gameController.selectAction(action);
-		closeActionMenu();
 	}
 
 }

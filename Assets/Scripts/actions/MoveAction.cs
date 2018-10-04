@@ -17,6 +17,9 @@ public class MoveAction : Action {
 		gameController.board.moveUnitTo(performer.gameObject, target);
 		int cost = gameController.board.getTileDistance(performer.tile_position, target);
 		performer.profile.movement_points.current_value -= cost;
+
+		UnitObserver observer = new UnitObserver(gameController);
+		performer.addObserver(observer);
 	}
 
 	public override string getActionText()
