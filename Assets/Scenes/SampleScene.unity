@@ -212,7 +212,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224557132
 GameObject:
@@ -303,12 +303,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile:
     initiative:
-      reset_value: 1
-      current_value: 1
+      value: 0
     movement_points:
+      value: 5
       reset_value: 5
-      current_value: 0
-  TRANSLATE_SPEED: 0.5
+    health_points:
+      value: 0
+    attack:
+      value: 0
+--- !u!1 &277346877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 277346879}
+  - component: {fileID: 277346878}
+  m_Layer: 0
+  m_Name: ActionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &277346878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277346877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d791bc2d12c2314b922ccc051d1e9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameController: {fileID: 961864536}
+  moveAction: {fileID: 1494329358897570, guid: d2587608faa0440bc85d113b5f79e5fa, type: 2}
+  passAction: {fileID: 1952027208298068, guid: 1648b895efb254cc2a12fc5a3239ae09, type: 2}
+--- !u!4 &277346879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277346877}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.63158, y: 7.468422, z: -5.9413433}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 961864537}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &387114683
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +441,7 @@ RectTransform:
   m_Children:
   - {fileID: 1731284296}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -480,68 +525,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &913278124
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 913278127}
-  - component: {fileID: 913278126}
-  - component: {fileID: 913278125}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &913278125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 913278124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &913278126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 913278124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &913278127
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 913278124}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &961864535
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +560,8 @@ MonoBehaviour:
   moveable_tiles_color: {r: 0.043137264, g: 0.9254902, b: 0.3730111, a: 0.3137255}
   over_color: {r: 0.8018868, g: 0.17399429, b: 0.4350005, a: 0.4862745}
   selected_tile_color: {r: 1, g: 0, b: 0, a: 1}
+  actionManager: {fileID: 277346878}
+  spectateMode: 0
 --- !u!4 &961864537
 Transform:
   m_ObjectHideFlags: 0
@@ -586,7 +571,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.11931038, y: 2.7838013, z: 0.3828125}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 277346879}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -711,7 +697,7 @@ Prefab:
     - target: {fileID: 224888759921994566, guid: c303c3f4a8ad446398bf5212a0d7a203,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000030040741
+      value: 0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: 224888759921994566, guid: c303c3f4a8ad446398bf5212a0d7a203,
         type: 2}
@@ -6324,12 +6310,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profile:
     initiative:
-      reset_value: 1
-      current_value: 1
+      value: 0
     movement_points:
-      reset_value: 5
-      current_value: 0
-  TRANSLATE_SPEED: 0.5
+      value: 10
+      reset_value: 10
+    health_points:
+      value: 0
+    attack:
+      value: 0
 --- !u!212 &2125708887
 SpriteRenderer:
   m_ObjectHideFlags: 0

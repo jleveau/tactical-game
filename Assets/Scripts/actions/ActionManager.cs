@@ -3,38 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ActionManager 
+public class ActionManager : MonoBehaviour
 {
-	private List<Type> availableActionsTypes;
-	private GameController gameController;
+	List<GameObject> availableActionsTypes;
+	public GameController gameController;
+	public GameObject moveAction;
+	public GameObject passAction;
 
-	public ActionManager(GameController controller)
-	{
-		availableActionsTypes = new List<Type>();
-		availableActionsTypes.Add(typeof(MoveAction));
-		availableActionsTypes.Add(typeof(PassAction));
-		this.gameController = controller;
-
+	void Start()
+    {
+		availableActionsTypes = new List<GameObject>();
+		availableActionsTypes.Add(moveAction);
+		availableActionsTypes.Add(passAction);
 	}
        
 	public List<Action> getAvailableActionsForTarget(Unit unit, Vector3Int position) {
 		List<Action> actions = new List<Action>();
-		foreach (Type action_type in availableActionsTypes) {
-			Action my_action = (Action)Activator.CreateInstance(action_type);
-			if (my_action.condition(unit, position, gameController)) {
-				actions.Add(my_action);
+		foreach (GameObject action_type in availableActionsTypes) {
+			Action action = createAction(action_type, unit, position);
+			if (action.condition()) {
+				actions.Add(action);
 			}
 		}
 		return actions;
 	}
 
-	public List<Vector3Int> getAvailableTargetsForAction(Unit unit, Type action) {
-		Action my_action = (Action)Activator.CreateInstance(action);
-		return my_action.getAvailableTargets(unit, gameController);
+	Action createAction(GameObject action_prefab, Unit unit, Vector3Int position) {
+		GameObject action_obj = Instantiate(action_prefab);
+        Action action = action_obj.GetComponent<Action>();
 
+        action.performer = unit;
+		action.target = position;
+        action.controller = gameController;
+		action.transform.SetParent(this.transform);
+		return action;
 	}
-
-	public List<Vector3Int> getAvailableMoveActionTarget(Unit unit) {
-		return getAvailableTargetsForAction(unit, typeof(MoveAction));
-	}
+    
 }

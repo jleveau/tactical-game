@@ -2,26 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Action  {
+public abstract class Action : MonoBehaviour {
 
     
-	MoveAction controller;
-       
-	public List<Vector3Int> getAvailableTargets(Unit performer, GameController gameController) {
-		List<Vector3Int> positions = new List<Vector3Int>();
-		foreach (Vector3Int pos in gameController.board.getTiles()) {
-			if (condition(performer, pos, gameController)) {
-				positions.Add(pos);
-			}
+	List<IActionObserver> observers;
+	public Unit performer;
+	public GameController controller;
+	public Vector3Int target;
+    
+	void Start()
+    {
+		observers = new List<IActionObserver>();
+	}
+    
+	//Condition to perform the action
+	public abstract bool condition();
+
+    //What does the action do
+	public abstract void perform();
+
+	protected void NotifyActionStarted() {
+		foreach(IActionObserver observer in observers) {            
+			observer.NotifyActionStarted(performer, this);
 		}
-		return positions;
 	}
 
-    //Condition to perform the action
-	public abstract bool condition(Unit performer, Vector3Int target, GameController gameController);
-    
-    //What does the action do
-	public abstract void perform(Unit performer, Vector3Int target, GameController gameController);
+	protected void NotifyActionFinished() {
+		foreach (IActionObserver observer in observers)
+        {
+			observer.NotifyActionFinished(performer, this);
+        }	
+	}
+
+	public void addObserver(IActionObserver observer) {
+
+		if (observers == null) {
+			observers = new List<IActionObserver>();
+		}
+		observers.Add(observer);
+	}
+
 
 	public abstract string getActionText();
 }

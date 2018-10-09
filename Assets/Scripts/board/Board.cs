@@ -67,11 +67,6 @@ public class Board : MonoBehaviour
 		unit.setBoardController(this);
 	}
     
-	public void moveUnitTo(GameObject game_object, Vector3Int dest_tilepos) {
-		Unit unitComponent = game_object.GetComponent<Unit>();
-		unitComponent.followPath(mapManager.getPath(unitComponent.GetComponent<Unit>().tile_position, dest_tilepos));
-	}
-    
 	public List<Vector3Int> getTiles() {
 		return mapManager.getFloorTiles();
 	}

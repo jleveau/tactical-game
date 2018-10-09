@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using AssemblyCSharp.Assets.Scripts.TileMapElements;
 using UnityEngine;
 
 public class UnitManager {
     
-	private List<Unit> units;
-	private Queue<Unit> turnQueue;
+	List<Unit> units;
+	Queue<Unit> turnQueue;
 
 	public Unit currentUnit;
 
@@ -30,19 +29,23 @@ public class UnitManager {
 
 		if (turnQueue.Count > 0) {
 			currentUnit = turnQueue.Dequeue();
-			currentUnit.new_turn_update();
 		}
-
     }
 
-	private Queue<Unit> buildTurnQueue()
+	public void updateForNextTurn() {
+		foreach (Unit unit in units) {
+			unit.new_turn_update();
+		}
+	}
+
+	Queue<Unit> buildTurnQueue()
     {
 		Unit[] turnarray = units.ToArray();
 		Array.Sort(turnarray, delegate (Unit obj1, Unit obj2)
 		{
 			Unit unit1 = obj1.GetComponent<Unit>();
 			Unit unit2 = obj2.GetComponent<Unit>();
-			return unit1.profile.initiative.current_value.CompareTo(unit2.profile.initiative.current_value);
+			return unit1.profile.initiative.value.CompareTo(unit2.profile.initiative.value);
 		});
 		return new Queue<Unit>(turnarray);
 

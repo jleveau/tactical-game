@@ -5,7 +5,8 @@ using UnityEngine;
 	public class PassAction : Action
     {
 
-		public override bool condition(Unit performer, Vector3Int target, GameController gameController)
+
+	public override bool condition()
 		{
 			return true;
 		}
@@ -15,8 +16,14 @@ using UnityEngine;
 			return "Pass";
 		}
 
-		public override void perform(Unit performer, Vector3Int target, GameController gameController)
+		public override void perform()
 		{
-			gameController.changeCurrentPlayer();
+		    controller.nextTurn();
 		}
+
+	    public static bool getCondition(Unit performer, Vector3Int target, GameController controller)
+    	{
+    		return true;
+    	}
+
 	}

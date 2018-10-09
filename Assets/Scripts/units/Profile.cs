@@ -10,30 +10,20 @@ public interface IStatistic
 [Serializable]
 public class Statistic
 {
-	protected int current_value;
-
-	public int Value
-	{ 
-		get { return current_value;  }  
-	}
+	public int value;
   
 	public virtual void UpdateTurnChange() {
 	}
 }
-
+[Serializable]
 public class ResetEachTurnStatistic : Statistic
 {
-
 	public int reset_value;
-
-	ResetEachTurnStatistic() {
-		reset_value = current_value;
-	}
-
+       
 	public override void UpdateTurnChange()
     {
 		base.UpdateTurnChange();
-		current_value = reset_value;
+		value = reset_value;
     }
 }
 
@@ -49,7 +39,10 @@ public class Profile
 
 
 	public void UpdateTurnChange() {
-		
+		initiative.UpdateTurnChange();
+		movement_points.UpdateTurnChange();
+		health_points.UpdateTurnChange();
+		attack.UpdateTurnChange();
 	}
 
 }

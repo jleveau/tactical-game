@@ -13,16 +13,18 @@ public class GameController : MonoBehaviour {
 	public Color over_color;
 	public Color selected_tile_color;
 
-	bool spectateMode;
+	public GameControllerActionObserver actionObserver;
+	public ActionManager actionManager;
 
-	ActionManager actionManager;
+	public bool spectateMode;
+
 	UnitManager unitManager;
-	GameControllerActionObserver actionObserver;
 
 	// Use this for initialization
 	void Start () {
-		actionManager = new ActionManager(this.GetComponent<GameController>());
 		unitManager = new UnitManager();
+		actionObserver = new GameControllerActionObserver(this);
+
 		int i = 0;
 		foreach(GameObject unit in units) {
 			board.addUnitOnBoard(unit, new Vector3Int(0, i, -1));
@@ -30,7 +32,7 @@ public class GameController : MonoBehaviour {
 	        ++i;
 		}
 
-		changeCurrentPlayer();
+		nextTurn();
 		StartCoroutine("DisplayTiles");
 	}
 	
@@ -60,7 +62,12 @@ public class GameController : MonoBehaviour {
 		Unit unit = unitManager.currentUnit;
 		if (unit != null)
         {
-            List<Vector3Int> moveable_tiles = actionManager.getAvailableMoveActionTarget(unit);
+			List<Vector3Int> moveable_tiles = new List<Vector3Int>();
+			foreach(Vector3Int pos in board.getTiles()) {
+				if (MoveAction.getCondition(unitManager.currentUnit, pos, this)) {
+					moveable_tiles.Add(pos);
+				}
+			}
             foreach (Vector3Int targetable_position in moveable_tiles)
             {
                 board.changeTileColor(targetable_position, moveable_tiles_color);
@@ -86,26 +93,19 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void selectAction(Action action) {
-		Unit unit = unitManager.currentUnit;
 		if (board.getSelectedTile()!= null) {
-			action.perform(unit,board.getSelectedTile().Value, this);
+			action.perform();
 			menu_controller.closeActionMenu();
 			board.unselectTile();
 		}      
 	}
 
-	public void changeCurrentPlayer() {
+	public void nextTurn() {
+		unitManager.updateForNextTurn();
 		unitManager.nextUnit();
 		menu_controller.closeActionMenu();
 		board.unselectTile();
 	}
-
-	public void startSpectateMode() {
-		spectateMode = true;
-	}
-
-	public void endSpectateMode() {
-		spectateMode = false;
-	}
+   
 
 }
