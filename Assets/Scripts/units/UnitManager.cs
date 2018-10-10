@@ -19,7 +19,16 @@ public class UnitManager {
 		units.Add(unit);
 	}
    
-    
+    public Unit getUnitForTile(Vector3Int tilepos) {
+		foreach(Unit unit in units) {
+			if (unit.tile_position.x == tilepos.x && 
+				unit.tile_position.y == tilepos.y) {
+				return unit;
+			}
+		}
+		return null;
+	}
+
 	public void nextUnit() {
 		
 		if (turnQueue.Count == 0)

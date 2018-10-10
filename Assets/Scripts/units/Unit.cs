@@ -29,5 +29,13 @@ public class Unit : MonoBehaviour
 	public void setBoardController(Board boardController) {
 		this.boardController = boardController;
 	}
+
+	public void inflictDamage(int damages, Unit target) {
+		target.receiveDamage(damages);
+	}
+
+	public void receiveDamage(int damage) {
+		this.profile.health_points.value -= damage;
+	}
     
 }

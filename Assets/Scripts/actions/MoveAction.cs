@@ -32,18 +32,18 @@ public class MoveAction : Action {
 
 	public override void perform()
 	{
-		int cost = controller.board.getTileDistance(performer.tile_position, target);
 		addObserver(controller.actionObserver);
-
 		StartCoroutine("MoveUnit");
-		performer.profile.movement_points.value -= cost;
 	}
 
 	IEnumerator MoveUnit()
     {
 		current_path = new LinkedList<Vector3>();
+		//Get the path to follow
 		LinkedList<Vector3Int> tile_path = controller.board.MapManager.getPath(performer.tile_position, target);
-        foreach (Vector3Int tile_pos in tile_path)
+        
+		//Covert the path from tiles position in world position
+		foreach (Vector3Int tile_pos in tile_path)
         {
 			current_path.AddLast(controller.board.MapManager.getWorldPosition(tile_pos));
         }
@@ -54,10 +54,11 @@ public class MoveAction : Action {
         {
 			if (current_path.First == null || current_path.Count == 0)
             {
+				NotifyActionFinished();
 				yield break;
             }
+			//Compute translation
             Vector3 dest = current_path.First.Value;
-
 			float dx = Math.Min(TRANSLATE_SPEED, Math.Abs(performer.gameObject.transform.position.x - dest.x));
 			float dy = Math.Min(TRANSLATE_SPEED, Math.Abs(performer.gameObject.transform.position.y - dest.y));
 			if (dest.x < performer.gameObject.transform.position.x)
@@ -68,16 +69,18 @@ public class MoveAction : Action {
             {
                 dy *= -1;
             }
+			//Apply translation
 			performer.gameObject.transform.Translate(new Vector3(dx, dy, 0));
 
+			//Next tile reached
 			if (Math.Abs(performer.gameObject.transform.position.x - dest.x) < EPSILON_DISTANCE && Math.Abs(performer.gameObject.transform.position.y - dest.y) < EPSILON_DISTANCE)
             {
+				// change unit current tile
 				performer.tile_position = controller.board.MapManager.getTilePosition(dest);
+				// change the target
                 current_path.RemoveFirst();
-                if (current_path.Count == 0)
-                {
-					NotifyActionFinished();
-                }
+				// update unit movement points
+				performer.profile.movement_points.value -= 1;
             }
             yield return null;
         }

@@ -6,7 +6,7 @@ using UnityEngine;
     {
 
 
-	public override bool condition()
+		public override bool condition()
 		{
 			return true;
 		}

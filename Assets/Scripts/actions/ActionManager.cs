@@ -5,16 +5,10 @@ using UnityEngine;
 
 public class ActionManager : MonoBehaviour
 {
-	List<GameObject> availableActionsTypes;
+	public List<GameObject> availableActionsTypes;
 	public GameController gameController;
-	public GameObject moveAction;
-	public GameObject passAction;
-
 	void Start()
     {
-		availableActionsTypes = new List<GameObject>();
-		availableActionsTypes.Add(moveAction);
-		availableActionsTypes.Add(passAction);
 	}
        
 	public List<Action> getAvailableActionsForTarget(Unit unit, Vector3Int position) {

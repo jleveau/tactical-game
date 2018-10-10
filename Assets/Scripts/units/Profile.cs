@@ -32,6 +32,7 @@ public class Profile
 {
 	public Statistic initiative;
 	public ResetEachTurnStatistic movement_points;
+	public ResetEachTurnStatistic action_points;
 	public Statistic health_points;
 	public Statistic attack;
 
@@ -43,6 +44,7 @@ public class Profile
 		movement_points.UpdateTurnChange();
 		health_points.UpdateTurnChange();
 		attack.UpdateTurnChange();
+		action_points.UpdateTurnChange();
 	}
 
 }
