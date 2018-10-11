@@ -1,0 +1,24 @@
+{
+   "initiative":{
+      "value":1,
+      "name":"Initiative"
+   },
+   "health_points":{
+      "value":10,
+      "name":"Health Points"
+   },
+   "damages":{
+      "value":2,
+      "name":"Damages"
+   },
+   "movement_points":{
+      "value":4,
+      "name":"Movement Points",
+      "reset_value":4
+   },
+   "action_points":{
+      "value":1,
+      "name":"Action Points",
+      "reset_value":1
+   }
+}

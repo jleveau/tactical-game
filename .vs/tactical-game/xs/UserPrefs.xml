@@ -1,13 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/board/Board.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/menu/profile/ProfileMenu.cs">
     <Files>
-      <File FileName="Assets/Scripts/actions/MoveAction.cs" Line="27" Column="6" />
-      <File FileName="Assets/Scripts/units/Profile.cs" Line="69" Column="103" />
-      <File FileName="Assets/Scripts/actions/BasicAttack.cs" Line="22" Column="42" />
-      <File FileName="Assets/Scripts/actions/ActionManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/actions/PassAction.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/units/Unit.cs" Line="22" Column="33" />
-      <File FileName="Assets/Scripts/board/Board.cs" Line="62" Column="2" />
+      <File FileName="Assets/Scripts/units/profile/Profile.cs" Line="15" Column="13" />
+      <File FileName="Assets/Scripts/units/Unit.cs" Line="42" Column="40" />
+      <File FileName="Assets/Scripts/units/UnitManager.cs" Line="55" Column="43" />
+      <File FileName="Assets/Scripts/units/profile/Statistic.cs" Line="22" Column="6" />
+      <File FileName="Assets/Scripts/units/observers/ProfileObserver.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/actions/BasicAttack.cs" Line="20" Column="4" />
+      <File FileName="Assets/Scripts/actions/MoveAction.cs" Line="20" Column="44" />
+      <File FileName="Assets/Scripts/MenuController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="19" Column="27" />
+      <File FileName="Assets/Scripts/menu/profile/ProfileMenuItem.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/menu/profile/ProfileMenu.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

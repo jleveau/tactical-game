@@ -51,4 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394127d06c37c4aa484840349feb06cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TRANSLATE_SPEED: 1
+  performer: {fileID: 0}
+  controller: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
+  TRANSLATE_SPEED: 0.1

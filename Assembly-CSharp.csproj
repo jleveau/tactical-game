@@ -51,6 +51,18 @@
     <Reference Include="UnityEditor">
       <HintPath>/home/jleveau/Unity-2018.2.6f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\actions\Action.cs" />
@@ -71,7 +83,8 @@
      <Compile Include="Assets\Scripts\menu\profile\ProfileMenuItem.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\units\observers\ProfileObserver.cs" />
-     <Compile Include="Assets\Scripts\units\Profile.cs" />
+     <Compile Include="Assets\Scripts\units\profile\Profile.cs" />
+     <Compile Include="Assets\Scripts\units\profile\Statistic.cs" />
      <Compile Include="Assets\Scripts\units\Unit.cs" />
      <Compile Include="Assets\Scripts\units\UnitManager.cs" />
  <Reference Include="UnityEditor.StandardEvents">

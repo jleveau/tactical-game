@@ -1,17 +1,19 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using System.IO;
 
 public class Unit : MonoBehaviour
 {
-	public Profile profile;
 	[NonSerialized]
 	public Vector3Int tile_position;
+	public string profile_json;
 
+	public Profile profile;
 
 	void Start()
 	{
+		loadProfileFromJSON();
 	}
 	
 	// Update is called once per frame
@@ -28,7 +30,28 @@ public class Unit : MonoBehaviour
 	}
 
 	public void receiveDamage(int damage) {
-		profile.getStatistic(StatisticEnum.HealthPoints).value -= damage;
+		profile.health_points.value -= damage;
+	}
+
+	void loadProfileFromJSON()
+    {
+		string filePath = Path.Combine(Application.streamingAssetsPath, profile_json);
+        if (File.Exists(filePath))
+        {
+            string dataAsJSON = File.ReadAllText(filePath);
+			Profile loadedProfile = JsonUtility.FromJson<Profile>(dataAsJSON);
+			profile = loadedProfile;
+        }
+        else
+        {
+            Debug.LogError("Cannot load profile for path " + filePath);
+        }
+    }
+
+	void saveProfileToJson(string filename) {
+		string filePath = Path.Combine(Application.streamingAssetsPath, filename);
+		string json_string = JsonUtility.ToJson(profile);
+		File.WriteAllText(filePath, json_string);
 	}
     
 }
