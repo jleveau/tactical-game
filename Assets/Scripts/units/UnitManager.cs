@@ -45,7 +45,9 @@ public class UnitManager {
 		{
 			Unit unit1 = obj1.GetComponent<Unit>();
 			Unit unit2 = obj2.GetComponent<Unit>();
-			return unit1.profile.initiative.value.CompareTo(unit2.profile.initiative.value);
+			int unit1_initiative = unit1.profile.getStatistic(StatisticEnum.Initiative).value;
+			int unit2_initiative = unit2.profile.getStatistic(StatisticEnum.Initiative).value;
+			return unit1_initiative.CompareTo(unit2_initiative);
 		});
 		return new Queue<Unit>(turnarray);
 

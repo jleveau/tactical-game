@@ -64,8 +64,10 @@
      <Compile Include="Assets\Scripts\board\MapManager.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GameControllerActionObserver.cs" />
-     <Compile Include="Assets\Scripts\menu\actions\ActionMenuController.cs" />
+     <Compile Include="Assets\Scripts\menu\actions\ActionMenu.cs" />
      <Compile Include="Assets\Scripts\menu\actions\actionMenuItem.cs" />
+     <Compile Include="Assets\Scripts\menu\profile\ProfileMenu.cs" />
+     <Compile Include="Assets\Scripts\menu\profile\ProfileMenuItem.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\units\observers\ProfileObserver.cs" />
      <Compile Include="Assets\Scripts\units\Profile.cs" />

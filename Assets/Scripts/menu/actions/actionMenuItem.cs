@@ -15,7 +15,7 @@ public class actionMenuItem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown(trigger)) {
-			this.controller.selectionAction(action);
+			controller.selectionAction(action);
 		}
 	}
 
@@ -25,7 +25,7 @@ public class actionMenuItem : MonoBehaviour {
 	}
 
 	public void setController(MenuController menuController) {
-		this.controller = menuController;
+		controller = menuController;
 	}
 
 	public void setTrigger(KeyCode code) {

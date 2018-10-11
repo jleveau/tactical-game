@@ -21,15 +21,15 @@ GameObject:
   - component: {fileID: 224977173598526384}
   - component: {fileID: 222315600659646840}
   - component: {fileID: 114904237955662090}
-  - component: {fileID: 114054162209734954}
+  - component: {fileID: 114453223699197134}
   m_Layer: 5
-  m_Name: actionMenuItem
+  m_Name: ProfileMenuItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114054162209734954
+--- !u!114 &114453223699197134
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,7 +37,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1798526732165556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 511fcd389fa2f451d9f2cec6beb11ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 55d635267053144da99bb493ed5d8bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114904237955662090

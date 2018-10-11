@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public interface IStatistic
 {
@@ -11,6 +12,12 @@ public interface IStatistic
 public class Statistic
 {
 	public int value;
+	public string name;
+
+	public Statistic(string name, int value) {
+		this.name = name;
+		this.value = value;
+	}
   
 	public virtual void UpdateTurnChange() {
 	}
@@ -19,6 +26,12 @@ public class Statistic
 public class ResetEachTurnStatistic : Statistic
 {
 	public int reset_value;
+
+    public ResetEachTurnStatistic(string name, int value, int reset_value) : base(name, value)
+	{
+		this.reset_value = reset_value;
+	}
+
        
 	public override void UpdateTurnChange()
     {
@@ -27,25 +40,43 @@ public class ResetEachTurnStatistic : Statistic
     }
 }
 
+public enum StatisticEnum
+{
+    Initiative,
+    Movement_Points,
+    HealthPoints,
+    Damages
+}
+
 [Serializable]
 public class Profile
 {
-	public Statistic initiative;
-	public ResetEachTurnStatistic movement_points;
-	public Statistic health_points;
-	public Statistic attack;
+	[NonSerialized]
+	Dictionary<StatisticEnum, Statistic> statistics_dict;
 
+	[NonSerialized]
 	public List<ProfileObserver> observers;
 
-
-	public void UpdateTurnChange() {
-		initiative.UpdateTurnChange();
-		movement_points.UpdateTurnChange();
-		health_points.UpdateTurnChange();
-		attack.UpdateTurnChange();
+	public Profile() {
+		statistics_dict = new Dictionary<StatisticEnum, Statistic>();
+		statistics_dict.Add(StatisticEnum.Initiative, new Statistic("Initiative", 0));
+		statistics_dict.Add(StatisticEnum.Movement_Points, new ResetEachTurnStatistic("Movement Points", 0, 0));
+		statistics_dict.Add(StatisticEnum.HealthPoints, new Statistic("Health Points", 0));
+		statistics_dict.Add(StatisticEnum.Damages, new Statistic("Damages", 0));
 	}
 
+	public void UpdateTurnChange() {
+		foreach (Statistic stat in statistics_dict.Values) {
+			stat.UpdateTurnChange();
+		}
+	}
+
+	public Statistic getStatistic(StatisticEnum statistic) {
+		return statistics_dict[statistic];
+	}
+    
+	public List<Statistic> getAllStatistics() {
+		return statistics_dict.Values.ToList();
+	}
 }
-
-
 

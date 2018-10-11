@@ -20,7 +20,7 @@ public class MenuController : MonoBehaviour {
 	public void displayActionMenu(List<Action> actions)
     {
 		actionMenu.SetActive(true);
-		ActionMenuController menu = actionMenu.GetComponent<ActionMenuController>();
+		ActionMenu menu = actionMenu.GetComponent<ActionMenu>();
 		menu.setActions(actions);
     }
 
