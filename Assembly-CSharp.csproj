@@ -55,6 +55,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\actions\Action.cs" />
      <Compile Include="Assets\Scripts\actions\ActionManager.cs" />
+     <Compile Include="Assets\Scripts\actions\BasicAttack.cs" />
      <Compile Include="Assets\Scripts\actions\MoveAction.cs" />
      <Compile Include="Assets\Scripts\actions\observers\ActionObserver.cs" />
      <Compile Include="Assets\Scripts\actions\PassAction.cs" />

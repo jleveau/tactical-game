@@ -44,6 +44,7 @@ public enum StatisticEnum
 {
     Initiative,
     Movement_Points,
+    Action_Points,
     HealthPoints,
     Damages
 }
@@ -59,10 +60,13 @@ public class Profile
 
 	public Profile() {
 		statistics_dict = new Dictionary<StatisticEnum, Statistic>();
+
 		statistics_dict.Add(StatisticEnum.Initiative, new Statistic("Initiative", 0));
-		statistics_dict.Add(StatisticEnum.Movement_Points, new ResetEachTurnStatistic("Movement Points", 0, 0));
 		statistics_dict.Add(StatisticEnum.HealthPoints, new Statistic("Health Points", 0));
-		statistics_dict.Add(StatisticEnum.Damages, new Statistic("Damages", 0));
+        statistics_dict.Add(StatisticEnum.Damages, new Statistic("Damages", 0));
+
+		statistics_dict.Add(StatisticEnum.Movement_Points, new ResetEachTurnStatistic("Movement Points", 0, 0));
+		statistics_dict.Add(StatisticEnum.Action_Points, new ResetEachTurnStatistic("Action Points", 0, 0));
 	}
 
 	public void UpdateTurnChange() {

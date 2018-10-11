@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour {
 
 	public bool spectateMode;
 
-	UnitManager unitManager;
+	public UnitManager unitManager;
 
 	// Use this for initialization
 	void Start () {

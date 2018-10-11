@@ -64,7 +64,6 @@ public class Board : MonoBehaviour
 		game_object.transform.position = mapManager.getWorldPosition(tilepos);
 		Unit unit = game_object.GetComponent<Unit>();
 		unit.tile_position = tilepos;
-		unit.setBoardController(this);
 	}
     
 	public List<Vector3Int> getTiles() {

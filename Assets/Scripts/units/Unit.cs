@@ -10,9 +10,6 @@ public class Unit : MonoBehaviour
 	public Vector3Int tile_position;
 
 
-	Board boardController;
-
-
 	void Start()
 	{
 	}
@@ -26,8 +23,12 @@ public class Unit : MonoBehaviour
 		profile.UpdateTurnChange();
 	}
 
-	public void setBoardController(Board boardController) {
-		this.boardController = boardController;
+	public void inflictDamage(int damages, Unit target) {
+		target.receiveDamage(damages);
+	}
+
+	public void receiveDamage(int damage) {
+		profile.getStatistic(StatisticEnum.HealthPoints).value -= damage;
 	}
     
 }
