@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,10 +13,10 @@ public class ProfileMenuItem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		GetComponent<Text>().text = statistic.name + " : " + statistic.value;
+  		GetComponent<Text>().text = statistic.name + " : " + statistic.value;
 	}
 
     public void setStatistic(Statistic stat) {
-		this.statistic = stat;
+		statistic = stat;
 	}
 }

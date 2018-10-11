@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.IO;
 
@@ -7,13 +6,24 @@ public class Unit : MonoBehaviour
 {
 	[NonSerialized]
 	public Vector3Int tile_position;
-	public string profile_json;
 
 	public Profile profile;
+	public string profile_json;
+
+    public Profile Profile
+	{
+		get
+		{
+			return profile;
+		}
+	}
+
+	void Awake() {
+		loadProfileFromJSON();
+	}
 
 	void Start()
 	{
-		loadProfileFromJSON();
 	}
 	
 	// Update is called once per frame
@@ -39,8 +49,7 @@ public class Unit : MonoBehaviour
         if (File.Exists(filePath))
         {
             string dataAsJSON = File.ReadAllText(filePath);
-			Profile loadedProfile = JsonUtility.FromJson<Profile>(dataAsJSON);
-			profile = loadedProfile;
+			profile.load(JsonUtility.FromJson<Profile>(dataAsJSON));
         }
         else
         {

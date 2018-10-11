@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ProfileMenu : MonoBehaviour {
     
-	Profile profile;
 	public GameObject profile_menu_item_prefab;
 	public GameObject content;
+	public MenuController menu_controller;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +17,10 @@ public class ProfileMenu : MonoBehaviour {
 	}
 
 	public void setProfile(Profile profile) {
-		this.profile = profile;
+		foreach (Transform child in content.transform)
+		{
+			Destroy(child.gameObject);
+		}
 		foreach (Statistic stat in profile.getAllStatistics()) {
 			GameObject item = Instantiate(profile_menu_item_prefab);
             item.transform.SetParent(content.transform, false);

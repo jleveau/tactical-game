@@ -58,13 +58,17 @@ namespace AssemblyCSharp.Assets.Scripts.algorithm
 		}
 
 		private List<Vector2Int> buildPath(Node node) {
+			// Build the path from the destination to the start
 			List<Vector2Int> path = new List<Vector2Int>();
+            //Add the endding point
 			path.Add(node.pos);
 			while (node.parent != null) 
 			{
 				path.Add(node.parent.pos);
 				node = node.parent;
 			}
+            //Remove the starting point
+			path.RemoveAt(path.Count - 1);
 			return path;
 		}
       

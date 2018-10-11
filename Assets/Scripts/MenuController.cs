@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour {
 
-
+	public GameObject profileMenu;
 	public GameObject actionMenu;
-    public GameObject GUICanvas;
 	public GameController gameController;
     
 	// Use this for initialization
@@ -16,7 +15,7 @@ public class MenuController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	}
-
+    
 	public void displayActionMenu(List<Action> actions)
     {
 		actionMenu.SetActive(true);
@@ -24,8 +23,18 @@ public class MenuController : MonoBehaviour {
 		menu.setActions(actions);
     }
 
+	public void displayProfileMenu(Profile profile) {
+		profileMenu.SetActive(true);
+		ProfileMenu menu = profileMenu.GetComponent<ProfileMenu>();
+		menu.setProfile(profile);
+	}
+
 	public void closeActionMenu() {
 		actionMenu.SetActive(false);
+	}
+
+	public void closeProfileMenu() {
+		profileMenu.SetActive(false);
 	}
 
 	public void selectionAction(Action action) {

@@ -1,22 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
-public class UnitManager {
+public class UnitManager : MonoBehaviour{
     
 	List<Unit> units;
 	Queue<Unit> turnQueue;
 
-	public Unit currentUnit;
+	public GameObject debugUnitPrefab;
+	public GameController gameController;
+    
+	Unit currentUnit;
 
+	public Unit CurrentUnit
+    {
+        get
+        {
+            return currentUnit;
+        }
+    }   
 
-    public UnitManager() {
+	// Use this for initialization
+    void Start()
+    {
 		units = new List<Unit>();
-		turnQueue = new Queue<Unit>();
-	}
-
-	public void addUnit(Unit unit) {
-		units.Add(unit);
+        turnQueue = new Queue<Unit>();
+    }
+    
+	public void createDebugUnit(Vector3Int position) {
+		GameObject unit_object = Instantiate(debugUnitPrefab);
+		gameController.board.addUnitOnBoard(unit_object, position);
+		units.Add(unit_object.GetComponent<Unit>());
 	}
    
     public Unit getUnitForTile(Vector3Int tilepos) {
@@ -54,13 +69,12 @@ public class UnitManager {
 		{
 			Unit unit1 = obj1.GetComponent<Unit>();
 			Unit unit2 = obj2.GetComponent<Unit>();
-			int unit1_initiative = unit1.profile.initiative.value;
-			int unit2_initiative = unit2.profile.initiative.value;
+			int unit1_initiative = unit1.Profile.initiative.value;
+			int unit2_initiative = unit2.Profile.initiative.value;
 			return unit1_initiative.CompareTo(unit2_initiative);
 		});
 		return new Queue<Unit>(turnarray);
 
     }
-    
 
 }

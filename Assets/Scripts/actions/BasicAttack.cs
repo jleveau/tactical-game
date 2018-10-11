@@ -25,7 +25,7 @@ using UnityEngine;
 	    public static bool getCondition(Unit performer, Vector3Int target, GameController controller)
     	{
 		    
-		    int action_points = performer.profile.action_points.value;
+		    int action_points = performer.Profile.action_points.value;
 
             //has action points, and units are in range and their is a unit on the targetted tile
             return action_points >= 1 &&
@@ -39,11 +39,11 @@ using UnityEngine;
 
             //Inflict damages
             Unit target_unit = controller.unitManager.getUnitForTile(this.target);
-		    int basic_damage = performer.profile.damages.value;
+		    int basic_damage = performer.Profile.damages.value;
             performer.inflictDamage(basic_damage, target_unit);
 
             //Update action points
-		    performer.profile.action_points.value -= 1;
+		    performer.Profile.action_points.value -= 1;
 
             
 			NotifyActionFinished();

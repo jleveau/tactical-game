@@ -19,7 +19,7 @@ public class MoveAction : Action {
 
 	public static bool getCondition(Unit performer, Vector3Int target, GameController controller)
     {
-		int move_points = performer.profile.movement_points.value;
+		int move_points = performer.Profile.movement_points.value;
 
         int tile_distance = controller.board.getTileDistance(performer.tile_position, target);
         return tile_distance <= move_points && tile_distance > 0;
@@ -49,7 +49,7 @@ public class MoveAction : Action {
         }
 
 		NotifyActionStarted();
-
+		Debug.Log(current_path.Count);
         for (; ; )
         {
 			if (current_path.First == null || current_path.Count == 0)
@@ -80,7 +80,7 @@ public class MoveAction : Action {
 				// change the target
                 current_path.RemoveFirst();
 				// update unit movement points
-				performer.profile.movement_points.value -= 1;
+				performer.Profile.movement_points.value -= 1;
             }
             yield return null;
         }
