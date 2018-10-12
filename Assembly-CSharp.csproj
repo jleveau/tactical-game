@@ -321,6 +321,7 @@
  <Reference Include="Boo.Lang">
  <HintPath>/home/jleveau/Unity-2018.2.6f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll</HintPath>
  </Reference>
+ <Compile Include="Assets\Scripts\algorithm\GraphPathSolver.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
