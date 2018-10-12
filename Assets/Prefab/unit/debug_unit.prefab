@@ -57,19 +57,19 @@ MonoBehaviour:
       value: 0
       name: Initiative
     health_points:
-      value: 1
+      value: 10
       name: Health Points
     damages:
-      value: 0
+      value: 2
       name: Damages
     movement_points:
-      value: 0
+      value: 5
       name: Movement Points
-      reset_value: 0
+      reset_value: 5
     action_points:
-      value: 0
+      value: 1
       name: Action Points
-      reset_value: 0
+      reset_value: 1
   profile_json: basic_profile 0.json
 --- !u!212 &212390401055156462
 SpriteRenderer:

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
 public class UnitManager : MonoBehaviour{
     
@@ -22,7 +21,7 @@ public class UnitManager : MonoBehaviour{
     }   
 
 	// Use this for initialization
-    void Start()
+    void Awake()
     {
 		units = new List<Unit>();
         turnQueue = new Queue<Unit>();
@@ -31,6 +30,7 @@ public class UnitManager : MonoBehaviour{
 	public void createDebugUnit(Vector3Int position) {
 		GameObject unit_object = Instantiate(debugUnitPrefab);
 		gameController.board.addUnitOnBoard(unit_object, position);
+		Debug.Log(units);
 		units.Add(unit_object.GetComponent<Unit>());
 	}
    

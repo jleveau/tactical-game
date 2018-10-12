@@ -17,10 +17,7 @@ public class Unit : MonoBehaviour
 			return profile;
 		}
 	}
-
-	void Awake() {
-		loadProfileFromJSON();
-	}
+   
 
 	void Start()
 	{
@@ -43,24 +40,6 @@ public class Unit : MonoBehaviour
 		profile.health_points.value -= damage;
 	}
 
-	void loadProfileFromJSON()
-    {
-		string filePath = Path.Combine(Application.streamingAssetsPath, profile_json);
-        if (File.Exists(filePath))
-        {
-            string dataAsJSON = File.ReadAllText(filePath);
-			profile.load(JsonUtility.FromJson<Profile>(dataAsJSON));
-        }
-        else
-        {
-            Debug.LogError("Cannot load profile for path " + filePath);
-        }
-    }
-
-	void saveProfileToJson(string filename) {
-		string filePath = Path.Combine(Application.streamingAssetsPath, filename);
-		string json_string = JsonUtility.ToJson(profile);
-		File.WriteAllText(filePath, json_string);
-	}
+   
     
 }

@@ -18,18 +18,22 @@ public class GameController : MonoBehaviour {
 
 	public bool spectateMode;
 
+	void Awake()
+	{
+		actionObserver = new GameControllerActionObserver(this);      
+	}
+
 
 	// Use this for initialization
 	void Start () {
-		actionObserver = new GameControllerActionObserver(this);
 
 		unitManager.createDebugUnit(new Vector3Int(-5, 0, 0));
 		unitManager.createDebugUnit(new Vector3Int(5, 0, 0));
 
-		nextTurn();
 		StartCoroutine("DisplayTiles");
+		nextTurn();
 	}
-   
+    
 
 	IEnumerator DisplayTiles() {
 		for (; ;)

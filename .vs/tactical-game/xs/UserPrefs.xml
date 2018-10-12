@@ -1,22 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/algorithm/GridPathSolver.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameController.cs">
     <Files>
-      <File FileName="Assets/Scripts/units/profile/Profile.cs" Line="32" Column="2" />
-      <File FileName="Assets/Scripts/units/Unit.cs" Line="25" Column="14" />
-      <File FileName="Assets/Scripts/units/UnitManager.cs" Line="62" Column="4" />
-      <File FileName="Assets/Scripts/units/profile/Statistic.cs" Line="23" Column="6" />
-      <File FileName="Assets/Scripts/units/observers/ProfileObserver.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/actions/BasicAttack.cs" Line="46" Column="7" />
-      <File FileName="Assets/Scripts/actions/MoveAction.cs" Line="43" Column="69" />
+      <File FileName="Assets/Scripts/actions/MoveAction.cs" Line="22" Column="61" />
+      <File FileName="Assets/Scripts/units/UnitManager.cs" Line="19" Column="32" />
+      <File FileName="Assets/Scripts/units/Unit.cs" Line="21" Column="2" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="21" Column="9" />
       <File FileName="Assets/Scripts/MenuController.cs" Line="45" Column="1" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="26" Column="57" />
-      <File FileName="Assets/Scripts/menu/profile/ProfileMenuItem.cs" Line="23" Column="1" />
-      <File FileName="Assets/Scripts/menu/profile/ProfileMenu.cs" Line="16" Column="3" />
-      <File FileName="Assets/Scripts/GameControllerActionObserver.cs" Line="27" Column="1" />
-      <File FileName="Assets/Scripts/menu/actions/ActionMenu.cs" Line="10" Column="26" />
-      <File FileName="Assets/Scripts/actions/PassAction.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/board/MapManager.cs" Line="41" Column="39" />
-      <File FileName="Assets/Scripts/algorithm/GridPathSolver.cs" Line="84" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
