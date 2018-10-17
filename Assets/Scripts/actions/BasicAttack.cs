@@ -45,7 +45,10 @@ using UnityEngine;
             //Update action points
 		    performer.Profile.action_points.value -= 1;
 
-            
+			Animator animator = performer.gameObject.GetComponent<Animator>();
+			animator.SetTrigger("Attack");
+			animator.SetTrigger("Attack");
+
 			NotifyActionFinished();
 
             yield break;
