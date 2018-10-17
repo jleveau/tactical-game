@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitManager : MonoBehaviour{
-    
-	List<Unit> units;
+	
+	[NonSerialized]
+	public List<Unit> units;
 	Queue<Unit> turnQueue;
 
 	public GameObject debugUnitPrefab;
@@ -74,7 +75,6 @@ public class UnitManager : MonoBehaviour{
 			return unit1_initiative.CompareTo(unit2_initiative);
 		});
 		return new Queue<Unit>(turnarray);
-
     }
 
 }

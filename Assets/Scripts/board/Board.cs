@@ -25,15 +25,11 @@ public class Board : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public int getTileDistance(Vector3Int pos1, Vector3Int pos2) {
 		return this.mapManager.getTileDistance(pos1, pos2);
 	}
     
-
 	public void resetTileColor(Vector3Int tile_to_color) {
 		mapManager.resetColor(tile_to_color);
 	}
@@ -49,7 +45,6 @@ public class Board : MonoBehaviour
             resetTileColor(tile);
         }
     }
-
 
 	public void onFloorClicked(Vector3 pos) {
 		Vector3Int tile_pos = mapManager.getTilePosition(pos);
