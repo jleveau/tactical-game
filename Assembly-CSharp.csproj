@@ -51,12 +51,22 @@
     <Reference Include="UnityEditor">
       <HintPath>/home/jleveau/Unity-2018.2.6f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\actions\Action.cs" />
      <Compile Include="Assets\Scripts\actions\ActionManager.cs" />
      <Compile Include="Assets\Scripts\actions\BasicAttack.cs" />
      <Compile Include="Assets\Scripts\actions\MoveAction.cs" />
+     <Compile Include="Assets\Scripts\actions\MoveActionRangeManager.cs" />
      <Compile Include="Assets\Scripts\actions\observers\ActionObserver.cs" />
      <Compile Include="Assets\Scripts\actions\PassAction.cs" />
      <Compile Include="Assets\Scripts\algorithm\GraphPathSolver.cs" />
@@ -65,6 +75,7 @@
      <Compile Include="Assets\Scripts\board\FloorScript.cs" />
      <Compile Include="Assets\Scripts\board\MapManager.cs" />
      <Compile Include="Assets\Scripts\board\PathFindingManager.cs" />
+     <Compile Include="Assets\Scripts\board\tile_display.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GameControllerActionObserver.cs" />
      <Compile Include="Assets\Scripts\menu\actions\ActionMenu.cs" />

@@ -51,7 +51,7 @@ public class PathFindingManager {
 
 		for (int i = 0; i < cost_map.Length; ++i) {
 			for (int j = 0; j < cost_map[i].Length; ++j) {
-				cost_map[i][j] = costForTile(new Vector2Int(i,j), controller);
+				cost_map[i][j] = costForTile(new Vector2Int(i + offset.xMin, j + offset.yMin), controller);
 			}
 		}
               

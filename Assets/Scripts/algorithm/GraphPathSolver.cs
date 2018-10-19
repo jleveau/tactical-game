@@ -33,7 +33,6 @@ namespace AssemblyCSharp.Assets.Scripts.algorithm
 		// costs[i][j] = -1 => cout infini
 		void Init(int[][] costs, Vector2Int start) {
 			nodes = new List<Node>();
-			Debug.Log(start.x + " " + start.y);
 			for (int i = 0; i < costs.Length; ++i) {
 				for (int j = 0; j < costs[i].Length; ++j) {
 					Node node;
@@ -124,7 +123,6 @@ namespace AssemblyCSharp.Assets.Scripts.algorithm
 				path.AddFirst(new Vector2Int(node.x, node.y));
 				node = node.parent;
 			}
-			Debug.Log("path size" + path.Count);
 
 			return path;
 
@@ -137,10 +135,13 @@ namespace AssemblyCSharp.Assets.Scripts.algorithm
 				return reachable_pos;
             }
 			foreach(Node node in this.nodes) {
+
 				if (node.cost <= max_cost) {
-					reachable_pos.Add(new Vector2Int(node.x, node.y));
-				}
+
+					reachable_pos.Add(new Vector2Int(node.x, node.y));               
+				} 
 			}
+
 			return reachable_pos;
 		}
 

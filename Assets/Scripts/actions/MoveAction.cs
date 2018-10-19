@@ -19,10 +19,17 @@ public class MoveAction : Action {
 
 	public static bool getCondition(Unit performer, Vector3Int target, GameController controller)
     {
+		if (target == performer.tile_position) {
+			return false;
+		}
 		int move_points = performer.Profile.movement_points.value;
-
-        int tile_distance = controller.board.getTileDistance(performer.tile_position, target);
-        return tile_distance <= move_points && tile_distance > 0;
+		LinkedList<Vector3Int> reachables = MoveActionRangeManager.getReachableTiles(performer.tile_position, move_points, controller.board);
+		foreach(Vector3Int pos in reachables) {
+			if (pos == target){            
+				return true;
+			}
+		}      
+		return false;
     }
 
 	public override bool condition()

@@ -15,12 +15,15 @@ public class GameControllerActionObserver : IActionObserver
        
     public void NotifyActionStarted(Unit unit, Action action)
     {
-		controller.spectateMode = true;
+		controller.setSpectate(true);
+		controller.tile_displayer.notifyActionStarted();      
     }
 
 	public void NotifyActionFinished(Unit unit, Action action)
     {
-		controller.spectateMode = false;
+		controller.setSpectate(false);
+		controller.tile_displayer.notifyActionFinished();
+		MoveActionRangeManager.reset();
     }
 }
 
