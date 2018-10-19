@@ -4,54 +4,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-	public class BasicAttack : Action
+public class BasicAttack : Action
+{
+    public override bool condition()
     {
-		public override bool condition()
-		{
-		    return BasicAttack.getCondition(performer, target, controller);
-		}
+        return BasicAttack.getCondition(performer, target, controller);
+    }
 
-		public override string getActionText()
-		{
-			return "Attack";
-		}
+    public override string getActionText()
+    {
+        return "Attack";
+    }
 
-		public override void perform()
-		{
-            addObserver(controller.actionObserver);
-            StartCoroutine("AttackUnit");
-        }
+    public override void perform()
+    {
+        addObserver(controller.actionObserver);
+        StartCoroutine("AttackUnit");
+    }
 
-	    public static bool getCondition(Unit performer, Vector3Int target, GameController controller)
-    	{
-		    
-		    int action_points = performer.Profile.action_points.value;
+    public static bool getCondition(Unit performer, Vector3Int target, GameController controller)
+    {
 
-            //has action points, and units are in range and their is a unit on the targetted tile
-            return action_points >= 1 &&
-                controller.board.getTileDistance(performer.tile_position, target) == 1 &&
-                controller.unitManager.getUnitForTile(target) != null;
-        }
+        int action_points = performer.Profile.action_points.value;
 
-        IEnumerator AttackUnit()
-        {
-			NotifyActionStarted();
+        //has action points, and units are in range and their is a unit on the targetted tile
+        return action_points >= 1 &&
+            controller.board.getTileDistance(performer.tile_position, target) == 1 &&
+            controller.unitManager.getUnitForTile(target) != null;
+    }
 
-            //Inflict damages
-            Unit target_unit = controller.unitManager.getUnitForTile(this.target);
-		    int basic_damage = performer.Profile.damages.value;
-            performer.inflictDamage(basic_damage, target_unit);
+    IEnumerator AttackUnit()
+    {
+        NotifyActionStarted();
 
-            //Update action points
-		    performer.Profile.action_points.value -= 1;
+        //Inflict damages
+        Unit target_unit = controller.unitManager.getUnitForTile(this.target);
+        int basic_damage = performer.Profile.damages.value;
+        performer.inflictDamage(basic_damage, target_unit);
 
-			Animator animator = performer.gameObject.GetComponent<Animator>();
-			animator.SetTrigger("Attack");
-			animator.SetTrigger("Attack");
+        //Update action points
+        performer.Profile.action_points.value -= 1;
 
-			NotifyActionFinished();
+        Animator animator = performer.gameObject.GetComponent<Animator>();
 
-            yield break;
-            
-        }
-	}
+        performer.turnTowardDirection(target_unit.tile_position);
+
+        animator.SetTrigger("Attack");
+
+        NotifyActionFinished();
+
+        yield break;
+
+    }
+}
