@@ -31,7 +31,6 @@ public class UnitManager : MonoBehaviour{
 	public void createDebugUnit(Vector3Int position) {
 		GameObject unit_object = Instantiate(debugUnitPrefab);
 		gameController.board.addUnitOnBoard(unit_object, position);
-		Debug.Log(units);
 		units.Add(unit_object.GetComponent<Unit>());
 	}
    

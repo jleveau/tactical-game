@@ -9,8 +9,10 @@ public class MapManager
 	public Tilemap floor;
     private Color originalColor;
 
-	private int Z_WOLRD_POS = -1;
-	private int FLOOR_TILE_POS = 0;
+	[NonSerialized]
+	public int Z_WOLRD_POS = -1;
+	[NonSerialized]
+	public int FLOOR_TILE_POS = 0;
 
     // Use this for initialization
 	public MapManager(Tilemap floor)
@@ -33,8 +35,6 @@ public class MapManager
 	public void resetColor(Vector3Int tilePos) {
 		floor.SetColor(tilePos, originalColor);
 	}
-   
-
 
 	public Vector3 getWorldPosition(Vector3Int cellPos) {
 		Vector3 pos = floor.CellToWorld(cellPos);

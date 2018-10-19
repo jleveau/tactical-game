@@ -15,9 +15,10 @@ public class GameController : MonoBehaviour {
 
 	public GameControllerActionObserver actionObserver;
 	public ActionManager actionManager;
-
+	[NonSerialized]
 	public bool spectateMode;
-
+   
+   
 	void Awake()
 	{
 		actionObserver = new GameControllerActionObserver(this);      
@@ -56,12 +57,7 @@ public class GameController : MonoBehaviour {
 		Unit unit = unitManager.CurrentUnit;
 		if (unit != null)
         {
-			List<Vector3Int> moveable_tiles = new List<Vector3Int>();
-			foreach(Vector3Int pos in board.getTiles()) {
-				if (MoveAction.getCondition(unitManager.CurrentUnit, pos, this)) {
-					moveable_tiles.Add(pos);
-				}
-			}
+			LinkedList<Vector3Int> moveable_tiles = this.board.getTilesInMoveRange(unit.tile_position, unit.Profile.movement_points.value);
             foreach (Vector3Int targetable_position in moveable_tiles)
             {
                 board.changeTileColor(targetable_position, moveable_tiles_color);
@@ -106,6 +102,5 @@ public class GameController : MonoBehaviour {
 
 		menu_controller.displayProfileMenu(unitManager.CurrentUnit.profile);
    	}
-   
 
 }

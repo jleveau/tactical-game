@@ -40,7 +40,7 @@ public class MoveAction : Action {
     {
 		current_path = new LinkedList<Vector3>();
 		//Get the path to follow
-		LinkedList<Vector3Int> tile_path = controller.board.MapManager.getPath(performer.tile_position, target);
+		LinkedList<Vector3Int> tile_path = controller.board.getPath(performer.tile_position, target);
         
 		//Covert the path from tiles position in world position
 		foreach (Vector3Int tile_pos in tile_path)
@@ -49,7 +49,6 @@ public class MoveAction : Action {
         }
 
 		NotifyActionStarted();
-		Debug.Log(current_path.Count);
         for (; ; )
         {
 			if (current_path.First == null || current_path.Count == 0)
