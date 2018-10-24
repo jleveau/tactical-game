@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using AssemblyCSharp.Assets.Scripts.algorithm;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,16 +7,16 @@ public class MapManager
 {
 
 	public Tilemap floor;
-	private GridPathSolver pathSolver;
     private Color originalColor;
 
-	private int Z_WOLRD_POS = -1;
-	private int FLOOR_TILE_POS = 0;
+	[NonSerialized]
+	public int Z_WOLRD_POS = -1;
+	[NonSerialized]
+	public int FLOOR_TILE_POS = 0;
 
     // Use this for initialization
 	public MapManager(Tilemap floor)
 	{
-		pathSolver = new GridPathSolver();
 		this.floor = floor;
 		originalColor = floor.GetComponent<Tilemap>().color;
 		for (int x = floor.cellBounds.xMin; x < floor.cellBounds.xMax; x++) {
@@ -35,15 +34,6 @@ public class MapManager
 
 	public void resetColor(Vector3Int tilePos) {
 		floor.SetColor(tilePos, originalColor);
-	}
-   
-	public LinkedList<Vector3Int> getPath(Vector3Int start, Vector3Int end) {
-		List<Vector2Int> path = pathSolver.FindPath(new Vector2Int(start.x, start.y), new Vector2Int(end.x, end.y));
-		LinkedList<Vector3Int> path3D = new LinkedList<Vector3Int>();
-		foreach (Vector2Int pos in path) {
-			path3D.AddFirst(new Vector3Int(pos.x, pos.y, FLOOR_TILE_POS));
-		}
-		return path3D;
 	}
 
 	public Vector3 getWorldPosition(Vector3Int cellPos) {

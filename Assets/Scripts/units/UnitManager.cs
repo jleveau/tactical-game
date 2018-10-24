@@ -2,75 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitManager : MonoBehaviour
-{
+public class UnitManager : MonoBehaviour{
+    
+	List<Unit> units;
+	Queue<Unit> turnQueue;
 
-    List<Unit> units;
-    Queue<Unit> turnQueue;
+	public GameObject debugUnitPrefab;
+	public GameController gameController;
+    
+	Unit currentUnit;
 
-    public GameObject debugUnitPrefab;
-    public GameController gameController;
-
-    Unit currentUnit;
-
-    public Unit CurrentUnit
+	public Unit CurrentUnit
     {
         get
         {
             return currentUnit;
         }
-    }
+    }   
 
-    // Use this for initialization
+	// Use this for initialization
     void Awake()
     {
-        units = new List<Unit>();
+		units = new List<Unit>();
         turnQueue = new Queue<Unit>();
     }
+    
+	public void createDebugUnit(Vector3Int position) {
+		GameObject unit_object = Instantiate(debugUnitPrefab);
+		gameController.board.addUnitOnBoard(unit_object, position);
+		units.Add(unit_object.GetComponent<Unit>());
+	}
+   
+    public Unit getUnitForTile(Vector3Int tilepos) {
+		foreach(Unit unit in units) {
+			if (unit.tile_position.x == tilepos.x && 
+				unit.tile_position.y == tilepos.y) {
+				return unit;
+			}
+		}
+		return null;
+	}
 
-    public void createDebugUnit(Vector3Int position)
-    {
-        GameObject unit_object = Instantiate(debugUnitPrefab);
-        gameController.board.addUnitOnBoard(unit_object, position);
-        units.Add(unit_object.GetComponent<Unit>());
-    }
-
-    public Unit getUnitForTile(Vector3Int tilepos)
-    {
-        foreach (Unit unit in units)
-        {
-            if (unit.tile_position.x == tilepos.x &&
-                unit.tile_position.y == tilepos.y)
-            {
-                return unit;
-            }
-        }
-        return null;
-    }
-
-    public void nextUnit()
-    {
-
-        if (turnQueue.Count == 0)
+	public void nextUnit() {
+		
+		if (turnQueue.Count == 0)
         {
             turnQueue = buildTurnQueue();
         }
 
-        if (turnQueue.Count > 0)
-        {
-            currentUnit = turnQueue.Dequeue();
-        }
+		if (turnQueue.Count > 0) {
+			currentUnit = turnQueue.Dequeue();
+		}
     }
 
-    public void updateForNextTurn()
-    {
-        foreach (Unit unit in units)
-        {
-            unit.new_turn_update();
-        }
-    }
+	public void updateForNextTurn() {
+		foreach (Unit unit in units) {
+			unit.new_turn_update();
+		}
+	}
 
-    Queue<Unit> buildTurnQueue()
+	Queue<Unit> buildTurnQueue()
     {
         Unit[] turnarray = units.ToArray();
         Array.Sort(turnarray, delegate (Unit obj1, Unit obj2)

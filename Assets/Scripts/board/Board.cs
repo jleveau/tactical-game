@@ -18,22 +18,28 @@ public class Board : MonoBehaviour
     public Vector3Int mouse_over_tile;
 
 	Vector3Int selectedTilePos;
+	private PathFindingManager pathFindingManager;
 
 	// Use this for initialization
 	void Start () {
 		mapManager = new MapManager(floor);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		pathFindingManager = new PathFindingManager();
 	}
 
+	public LinkedList<Vector3Int> getPath(Vector3Int start, Vector3Int end) {
+		return pathFindingManager.getPath(start, end, gameController);
+	}
+
+    // Return tile reachable after applying movement costs and collisions
+	public LinkedList<Vector3Int> getTilesInMoveRange(Vector3Int pos, int range) {
+		return pathFindingManager.getReachableTiles(pos, range, gameController);
+	}
+
+	// Return Manhattan distance
 	public int getTileDistance(Vector3Int pos1, Vector3Int pos2) {
-		return this.mapManager.getTileDistance(pos1, pos2);
+		return mapManager.getTileDistance(pos1, pos2);
 	}
     
-
 	public void resetTileColor(Vector3Int tile_to_color) {
 		mapManager.resetColor(tile_to_color);
 	}
@@ -49,7 +55,6 @@ public class Board : MonoBehaviour
             resetTileColor(tile);
         }
     }
-
 
 	public void onFloorClicked(Vector3 pos) {
 		Vector3Int tile_pos = mapManager.getTilePosition(pos);

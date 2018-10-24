@@ -1,0 +1,36 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/actions/MoveAction.cs">
+    <Files>
+<<<<<<< HEAD
+      <File FileName="Assets/Scripts/actions/MoveAction.cs" Line="53" Column="1" />
+      <File FileName="Assets/Scripts/units/UnitManager.cs" Line="19" Column="32" />
+      <File FileName="Assets/Scripts/units/Unit.cs" Line="21" Column="2" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="21" Column="9" />
+      <File FileName="Assets/Scripts/MenuController.cs" Line="45" Column="1" />
+=======
+      <File FileName="Assets/Scripts/board/Board.cs" Line="35" Column="39" />
+      <File FileName="Assets/Scripts/board/tile_display.cs" Line="46" Column="31" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="68" Column="1" />
+      <File FileName="Assets/Scripts/GameControllerActionObserver.cs" Line="23" Column="6" />
+      <File FileName="Assets/Scripts/actions/ActionManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/actions/BasicAttack.cs" Line="21" Column="39" />
+      <File FileName="Assets/Scripts/MenuController.cs" Line="26" Column="51" />
+      <File FileName="Assets/Scripts/actions/Action.cs" Line="37" Column="41" />
+      <File FileName="Assets/Scripts/actions/MoveAction.cs" Line="10" Column="2" />
+      <File FileName="Assets/Scripts/actions/moveActionRangeComputer.cs" Line="3" Column="1" />
+      <File FileName="Assets/Scripts/actions/MoveActionRangeManager.cs" Line="19" Column="41" />
+      <File FileName="Assets/Scripts/board/FloorScript.cs" Line="12" Column="6" />
+      <File FileName="Assets/Scripts/actions/PassAction.cs" Line="5" Column="1" />
+      <File FileName="Assets/Scripts/board/PathFindingManager.cs" Line="62" Column="57" />
+      <File FileName="Assets/Scripts/algorithm/GraphPathSolver.cs" Line="140" Column="6" />
+      <File FileName="Assets/Scripts/algorithm/GridPathSolver.cs" Line="26" Column="24" />
+>>>>>>> unit_collision
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

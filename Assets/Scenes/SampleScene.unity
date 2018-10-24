@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 145015012}
   - component: {fileID: 145015011}
   - component: {fileID: 145015013}
+  - component: {fileID: 145015014}
   m_Layer: 0
   m_Name: board
   m_TagString: Untagged
@@ -171,6 +172,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 961864536}
   floor: {fileID: 1982630690}
+--- !u!114 &145015014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 145015010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e181fb623cdcd4618b071d9a979c03d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 961864536}
+  moveable_tiles_color: {r: 0.7735849, g: 0.10217161, b: 0.10217161, a: 0}
+  over_color: {r: 0, g: 0, b: 0, a: 0}
+  selected_tile_color: {r: 0.990566, g: 0.9158063, b: 0.9158063, a: 0}
 --- !u!1 &198202463
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,9 +258,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableActionsTypes:
+  - {fileID: 1199554801536164, guid: bf6f5a0b78f4bdb478fb4a8eeb6380a6, type: 2}
   - {fileID: 1494329358897570, guid: d2587608faa0440bc85d113b5f79e5fa, type: 2}
   - {fileID: 1952027208298068, guid: 1648b895efb254cc2a12fc5a3239ae09, type: 2}
-  - {fileID: 1199554801536164, guid: bf6f5a0b78f4bdb478fb4a8eeb6380a6, type: 2}
   gameController: {fileID: 961864536}
 --- !u!4 &277346879
 Transform:
@@ -258,6 +274,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 961864537}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &387000398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 387000399}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &387000399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 387000398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 318.4555, y: 166.12592, z: -8.375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &387114683
 GameObject:
@@ -523,7 +567,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &728298261
 Prefab:
@@ -625,12 +669,12 @@ Prefab:
     - target: {fileID: 224686675172865154, guid: 7d56e7f67cb314797aa74e2cbfb15365,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0000076293945
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224686675172865154, guid: 7d56e7f67cb314797aa74e2cbfb15365,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.00001525911
+      value: 0.000030517258
       objectReference: {fileID: 0}
     - target: {fileID: 224214478009473000, guid: 7d56e7f67cb314797aa74e2cbfb15365,
         type: 2}
@@ -640,7 +684,7 @@ Prefab:
     - target: {fileID: 224686675172865154, guid: 7d56e7f67cb314797aa74e2cbfb15365,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: -132.09901
+      value: -132.01709
       objectReference: {fileID: 0}
     - target: {fileID: 224214478009473000, guid: 7d56e7f67cb314797aa74e2cbfb15365,
         type: 2}
@@ -741,9 +785,7 @@ MonoBehaviour:
   board: {fileID: 145015013}
   menu_controller: {fileID: 198202464}
   unitManager: {fileID: 1781598900}
-  moveable_tiles_color: {r: 0.043137264, g: 0.9254902, b: 0.3730111, a: 0.3137255}
-  over_color: {r: 0.8018868, g: 0.17399429, b: 0.4350005, a: 0.4862745}
-  selected_tile_color: {r: 1, g: 0, b: 0, a: 1}
+  tile_displayer: {fileID: 145015014}
   actionManager: {fileID: 277346878}
   spectateMode: 0
 --- !u!4 &961864537
@@ -892,7 +934,7 @@ Prefab:
     - target: {fileID: 224888759921994566, guid: c303c3f4a8ad446398bf5212a0d7a203,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 224133878829433372, guid: c303c3f4a8ad446398bf5212a0d7a203,
         type: 2}
@@ -907,7 +949,7 @@ Prefab:
     - target: {fileID: 224888759921994566, guid: c303c3f4a8ad446398bf5212a0d7a203,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: -131.09901
+      value: -131.01709
       objectReference: {fileID: 0}
     - target: {fileID: 224133878829433372, guid: c303c3f4a8ad446398bf5212a0d7a203,
         type: 2}
@@ -917,7 +959,7 @@ Prefab:
     - target: {fileID: 114514717667385028, guid: c303c3f4a8ad446398bf5212a0d7a203,
         type: 2}
       propertyPath: m_Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114249214650064140, guid: c303c3f4a8ad446398bf5212a0d7a203,
         type: 2}
@@ -943,7 +985,7 @@ Prefab:
     - target: {fileID: 114514717667385028, guid: c303c3f4a8ad446398bf5212a0d7a203,
         type: 2}
       propertyPath: m_Size
-      value: 0.82893735
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224315592718356168, guid: c303c3f4a8ad446398bf5212a0d7a203,
         type: 2}
